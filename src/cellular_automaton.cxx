@@ -2,9 +2,10 @@
 #include <string>
 #include <vector>
 
-using namespace CellularAutomaton;
+using namespace std;
+
 /* CONSTRUCTORS */
-CellularAutomaton(
+CellularAutomaton::CellularAutomaton(
     int n,
     int m,
     std::string boundary_conditions,

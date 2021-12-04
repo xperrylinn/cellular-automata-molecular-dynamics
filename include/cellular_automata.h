@@ -59,14 +59,14 @@ class CellularAutomaton {
         void majority_rule();
 
         /**
-         * purity_rule
+         * parity_rule
          *
          * TODO: fill in documentation here
          * 
          * @param  ???.
          * @return ???.
          */
-        void purity_rule();
+        void parity_rule();
 
         /**
          * dispersion_rule
