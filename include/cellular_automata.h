@@ -6,11 +6,11 @@ class CellularAutomaton {
         int n;  // Grid lenth
         int m;  // Grid width
         std::vector<int> current_state;
-        std::vector<vector<int>> snap_shots;
-        std::string boundary_conditions,
+        std::vector<std::vector<int> > snap_shots;
+        std::string boundary_conditions;
         std::string rule; // Possible rule
         bool sequential;
-        std::vector<int> initial_configuration=null;
+        std::vector<int> initial_configuration;
 
     public:
         /* CONSTRUCTORS */
@@ -20,7 +20,7 @@ class CellularAutomaton {
             std::string boundary_conditions,
             std::string rule,
             bool sequential=true,
-            std::vector<int> initial_configuration=null;
+            std::vector<int> initial_configuration
         );
 
         /* STATE TRANITION FUNCTION */
@@ -34,9 +34,6 @@ class CellularAutomaton {
          * @return null.
          */
         void state_transition_function(std::vector<int> previous_state);
-
-        /* HELPER FUNCTIONS */
-        int get_state;
 
         /* SNAP SHOT FUNCTION */
         /**
