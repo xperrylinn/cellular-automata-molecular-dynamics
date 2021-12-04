@@ -21,4 +21,6 @@ CellularAutomaton::CellularAutomaton(
     std::cout << "Hello World! From CellularAutomaton constructor!" << std::endl;
 }
 
-CellularAutomaton::get_neighbors()
+vector<int> CellularAutomaton::get_neighbors()  {
+
+}

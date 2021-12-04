@@ -1,16 +1,18 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class CellularAutomaton {
     private:
         int n;  // Grid lenth
         int m;  // Grid width
-        std::vector<int> current_state;
-        std::vector<std::vector<int> > snap_shots;
-        std::string boundary_conditions;
-        std::string rule; // Possible rule
+        vector<int> current_state;
+        vector<vector<int> > snap_shots;
+        string boundary_conditions;
+        string rule; // Possible rule
         bool sequential;
-        std::vector<int> initial_configuration;
+        vector<int> initial_configuration;
 
     public:
         /* CONSTRUCTORS */
@@ -19,9 +21,9 @@ class CellularAutomaton {
         CellularAutomaton(
             int n,
             int m,
-            std::string boundary_conditions,
-            std::string rule,
-            std::vector<int> initial_configuration,
+            string boundary_conditions,
+            string rule,
+            vector<int> initial_configuration,
             bool sequential=true
         );
 
@@ -35,7 +37,7 @@ class CellularAutomaton {
          * @param previous_state previous state grid of type vector<int>.
          * @return null.
          */
-        void state_transition_function(std::vector<int> previous_state);
+        void state_transition_function(vector<int> previous_state);
 
         /* SNAP SHOT FUNCTION */
         /**
@@ -46,7 +48,7 @@ class CellularAutomaton {
          * @param state ???.
          * @return null.
          */
-        void snap_shot(std::vector<int> state);
+        void snap_shot(vector<int> state);
 
         /* RULES */
 
