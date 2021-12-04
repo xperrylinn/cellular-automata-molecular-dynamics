@@ -10,7 +10,7 @@ CellularAutomaton(
     std::string boundary_conditions,
     std::string rule,
     bool sequential=true,
-    std::vector<int> initial_configuration=null;
+    std::vector<int> initial_configuration;
 ) {
     std::cout << "Hello World! From CellularAutomaton constructor!" << std::endl;
 }
