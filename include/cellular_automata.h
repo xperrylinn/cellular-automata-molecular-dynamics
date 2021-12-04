@@ -36,7 +36,7 @@ class CellularAutomaton {
         void state_transition_function(std::vector<int> previous_state);
 
         /* HELPER FUNCTIONS */
-        int get_state
+        int get_state;
 
         /* SNAP SHOT FUNCTION */
         /**
