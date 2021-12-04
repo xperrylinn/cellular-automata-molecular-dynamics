@@ -16,7 +16,7 @@ LIB_DIR     = ../lib
 # they are the targets this makefile builds
 CELLULAR_AUTOMATON_OBJS = cellular_automaton.o
 
-cellular_automaton.o: $(INC_DIR)/cellular_automata.h
+cellular_automaton.o: $(INC_DIR)/cellular_automaton.h
 	$(CXX) $(CXXFLAGS) cellular_automaton.cxx -I$(INC_DIR)
 	mv cellular_automaton.o $(LIB_DIR)
 

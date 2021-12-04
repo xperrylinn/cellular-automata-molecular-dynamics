@@ -14,13 +14,15 @@ class CellularAutomaton {
 
     public:
         /* CONSTRUCTORS */
+        CellularAutomaton();    // Dummy for initial testing
+
         CellularAutomaton(
             int n,
             int m,
             std::string boundary_conditions,
             std::string rule,
-            bool sequential=true,
-            std::vector<int> initial_configuration
+            std::vector<int> initial_configuration,
+            bool sequential=true
         );
 
         /* STATE TRANITION FUNCTION */

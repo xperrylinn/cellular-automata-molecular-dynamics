@@ -16,8 +16,8 @@ BIN_DIR     = ../bin
 # The next line contains the list of utility objects created by this Makefile.
 EXECUTABLES = test_xavi
 
-test_xavi: $(INC_DIR)/cellularautomaton.h 
-	$(CXX) $(CXXFLAGS) test_xavi test_xavi.cxx -I$(INC_DIR) $(LIB_DIR)/cellularautomaton.o
+test_xavi: $(INC_DIR)/cellular_automaton.h 
+	$(CXX) $(CXXFLAGS) test_xavi test_xavi.cxx -I$(INC_DIR) $(LIB_DIR)/cellular_automaton.o
 	mv test_xavi $(BIN_DIR)
 
 all: $(EXECUTABLES)
