@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-    std::cout << "Hello World! From test_xavi.cxx" << std::endl;
+    std::cout << "Hello World! From tests.cxx" << std::endl;
     
     // Testing dummy constructor which will be removed soon
     CellularAutomaton ca = CellularAutomaton();
