@@ -52,12 +52,22 @@ class CellularAutomaton {
         /* RULES */
 
         /**
+         * get_neighbors
+         *
+         * returns a vector of displacements from the current cell to the 
+         * 
+         * @param  none
+         * @return neighbors as a vector of integers.
+         */
+        vector<int> get_neighbors();
+
+        /**
          * majority_rule
          *
          * TODO: fill in documentation here
          * 
-         * @param  ???.
-         * @return ???.
+         * @param  neighbors(vector) vector of displacements pointing to neighboring cells.
+         * @return void.
          */
         void majority_rule();
 
@@ -66,7 +76,7 @@ class CellularAutomaton {
          *
          * TODO: fill in documentation here
          * 
-         * @param  ???.
+         * @param  neighbors(vector) vector of displacements pointing to neighboring cells.
          * @return ???.
          */
         void parity_rule();
