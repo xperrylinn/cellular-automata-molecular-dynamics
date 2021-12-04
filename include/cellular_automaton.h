@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class CellularAutomaton {
     private:
         int n;  // Grid lenth
@@ -8,8 +10,9 @@ class CellularAutomaton {
         std::vector<int> current_state;
         std::vector<std::vector<int> > snap_shots;
         std::string boundary_conditions;
-        std::string rule; // Possible rule
-        bool sequential;
+        std::string rule;   // Possible rule
+        std::string neighborhood;   // Von Neumann or Moore Neighborhood
+        bool sequential;    // Sequential or parallel
         std::vector<int> initial_configuration;
 
     public:
@@ -21,6 +24,7 @@ class CellularAutomaton {
             int m,
             std::string boundary_conditions,
             std::string rule,
+            std::string neighborhood,
             std::vector<int> initial_configuration,
             bool sequential=true
         );
