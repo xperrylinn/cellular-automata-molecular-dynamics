@@ -7,12 +7,22 @@ class CellularAutomaton {
     private:
         int n;  // Grid lenth
         int m;  // Grid width
+<<<<<<< HEAD
         vector<int> current_state;
         vector<vector<int> > snap_shots;
         string boundary_conditions;
         string rule; // Possible rule
         bool sequential;
         vector<int> initial_configuration;
+=======
+        std::vector<int> current_state;
+        std::vector<std::vector<int> > snap_shots;
+        std::string boundary_conditions;
+        std::string rule;   // Possible rule
+        std::string neighborhood;   // Von Neumann or Moore Neighborhood
+        bool sequential;    // Sequential or parallel
+        std::vector<int> initial_configuration;
+>>>>>>> 56127d7c8524c037ac54203562298c7cc39cdf52
 
     public:
         /* CONSTRUCTORS */
@@ -21,9 +31,16 @@ class CellularAutomaton {
         CellularAutomaton(
             int n,
             int m,
+<<<<<<< HEAD
             string boundary_conditions,
             string rule,
             vector<int> initial_configuration,
+=======
+            std::string boundary_conditions,
+            std::string rule,
+            std::string neighborhood,
+            std::vector<int> initial_configuration,
+>>>>>>> 56127d7c8524c037ac54203562298c7cc39cdf52
             bool sequential=true
         );
 
