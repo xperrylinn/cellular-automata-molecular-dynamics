@@ -26,10 +26,20 @@ CellularAutomaton::CellularAutomaton(
     this->boundary_conditions = boundary_conditions;
     this->rule = rule;
     this->initial_configuration = initial_configuration;
-    this->neighborhood = neighborhood;
+    //this->neighborhood = neighborhood;
     this->sequential = sequential;
+    this->neighbors = set_neighbors(neighborhood);
 }
 
-vector<int> CellularAutomaton::get_neighbors()  {
-
+vector<int> CellularAutomaton::set_neighbors(string neighborhood)  {
+    vector<int> neighbors {this->m * -1, -1, 1, this->m};
+    if (neighborhood == "Moore") {
+        vector<int> corners {(this->m + 1)* -1, (this->m - 1)* -1, this->m - 1, this->m +1};
+        for (int n:corners) {
+            neighbors.push_back(n);
+        }
+    }
+    return neighbors;
 }
+
+void CellularAutomaton::majority_rule() {}
