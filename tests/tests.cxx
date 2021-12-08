@@ -27,7 +27,7 @@ int main() {
         3,
         "periodic",
         "majority",
-        "moore",
+        "VanNeumann",
         v,
         true
     );
@@ -35,7 +35,41 @@ int main() {
     // Test get last snap shot
     std::vector<int> lsn = ca2.get_last_snapshot();
     
+    // Test print_grid()
     ca2.print_grid();
+
+    // Test get_neighbors()
+    for (auto neighbor:ca2.get_neighbors(4))    {
+        cout<<neighbor<<" ";
+    }
+    cout<<endl;
+
+    for (auto neighbor:ca2.get_neighbors(0))    {
+        cout<<neighbor<<" ";
+    }
+    cout<<endl;
+
+    // Test Majority Rule()
+    ca2.majority_rule(3);
+
+    // Test state_transition_function()
+    ca2.state_transition_function();
+    ca2.print_grid();
+
+    // Test parity_rule()
+    CellularAutomaton ca3 = CellularAutomaton(
+        3,
+        3,
+        "cutoff",
+        "parity",
+        "VanNeumann",
+        v,
+        true
+    );
+
+    ca3.print_grid();
+    ca3.state_transition_function();
+    ca3.print_grid();
 
     return 0;
 }

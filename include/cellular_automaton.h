@@ -69,7 +69,7 @@ class CellularAutomaton {
          * @param previous_state previous state grid of type vector<int>.
          * @return null.
          */
-        void state_transition_function(vector<int> previous_state);
+        void state_transition_function();
 
         /* SNAP SHOT FUNCTION */
         /**
@@ -99,7 +99,7 @@ class CellularAutomaton {
          *
          * updates the state of a cell at index in the current_state by majority rule.
          * 
-         * @param  neighbors(vector) vector of indices pointing cells in the neighborhood.
+         * @param  int index to be changed.
          * @return void.
          */
         void majority_rule(int index);
@@ -109,10 +109,10 @@ class CellularAutomaton {
          *
          * updates the state of a cell at index in the current_state by parity rule. Used for Binary Cellular Automata
          * 
-         * @param  neighbors(vector) vector of indices pointing cells in the neighborhood.
+         * @param  int index to be changed.
          * @return void.
          */
-        void parity_rule();
+        void parity_rule(int index);
 
         /**
          * dispersion_rule
