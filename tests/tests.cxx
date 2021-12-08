@@ -32,5 +32,10 @@ int main() {
         true
     );
     
+    // Test get last snap shot
+    std::vector<int> lsn = ca2.get_last_snapshot();
+    
+    ca2.print_grid();
+
     return 0;
 }
