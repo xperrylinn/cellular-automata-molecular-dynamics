@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -11,8 +12,7 @@ class CellularAutomaton {
         std::vector<std::vector<int> > snap_shots;
         std::string boundary_conditions;
         std::string rule;   // Possible rule
-        //std::string neighborhood;   // Von Neumann or Moore Neighborhood
-        vector<int> neighbors;
+        std::string neighborhood;   // Von Neumann or Moore Neighborhood
         bool sequential;    // Sequential or parallel
         std::vector<int> initial_configuration;
 
@@ -29,6 +29,34 @@ class CellularAutomaton {
             std::vector<int> initial_configuration,
             bool sequential=true
         );
+
+        /* HELPER AND CONVINENCE FUNCTIONS */
+        /**
+         * print
+         *
+         * Appends to the list of snap shots.
+         * 
+         * @return std::vector<int>
+         */
+        void print_grid();
+
+        /**
+         * get_last_snapshot
+         *
+         * Returns the last grid snap shot.
+         * 
+         * @return std::vector<int>
+         */
+        std::vector<int> get_last_snapshot();
+
+        /**
+         * append_snapshot
+         *
+         * Appends to the list of snap shots.
+         * 
+         * @return std::vector<int>
+         */
+        void append_snapshot(std::vector<int> snap_shot);
 
         /* STATE TRANITION FUNCTION */
 
