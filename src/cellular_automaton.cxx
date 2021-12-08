@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <algorithm>
 
 using namespace std;
 
@@ -44,8 +45,7 @@ void CellularAutomaton::print_grid() {
 
 list<int> CellularAutomaton::get_neighbors(int index)  {
     vector <int> neighbors;
-    // VanNeumann neighborhood: (top, left, center, right, bottom)
-    if (this->neighborhood == "VanNeumann") {
+    if (this->neighborhood == "VanNeumann") {   // VanNeumann neighborhood: (top, left, center, right, bottom)
         neighbors =  {index - this->m, index - 1, index, index + 1, index + this->m};
         if (boundary_conditions == "periodic")  {
             if (index < m)  {
@@ -76,8 +76,7 @@ list<int> CellularAutomaton::get_neighbors(int index)  {
             }
         }
     }
-    // Moore neighborhood: (top left, top, top right, left, center, right, bottom left, bottom , bottom right)
-    if (this->neighborhood == "Moore") {
+    if (this->neighborhood == "Moore") {    // Moore neighborhood: (top left, top, top right, left, center, right, bottom left, bottom , bottom right)
         neighbors =  {index - this->m - 1, index - this->m, index - this->m + 1, index - 1, index, index + 1, index + this->m - 1, index + this->m, index + this->m +1};
         if (boundary_conditions == "periodic")  {
             if (index < m)  {
@@ -130,7 +129,20 @@ list<int> CellularAutomaton::get_neighbors(int index)  {
     return list_neighbors;
 }
 
-void CellularAutomaton::majority_rule (int i) {}
+void CellularAutomaton::majority_rule (int index) {
+    vector<int> hashtable;
+    vector<int> previous_state= this->snap_shots.back();
+    list<int> neighbors = get_neighbors (index);
+    for (int n:neighbors)   {
+        int neighbor_value=previous_state[n];
+        if (hashtable.size() < neighbor_value)   {
+            hashtable.resize(neighbor_value+1);
+        }
+        hashtable[neighbor_value] += 1;
+    }
+    auto majority = max_element(hashtable.begin(), hashtable.end());
+    current_state[index]=*majority;
+}
 
 std::vector<int> CellularAutomaton::get_last_snapshot() {
     return this->snap_shots.back();

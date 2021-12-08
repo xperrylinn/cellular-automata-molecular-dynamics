@@ -102,7 +102,7 @@ class CellularAutomaton {
          * @param  neighbors(vector) vector of indices pointing cells in the neighborhood.
          * @return void.
          */
-        void majority_rule(int index, vector <int> neighbors);
+        void majority_rule(int index);
 
         /**
          * parity_rule
