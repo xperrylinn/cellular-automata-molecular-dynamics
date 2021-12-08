@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <list>
 
 using namespace std;
 
@@ -84,32 +85,32 @@ class CellularAutomaton {
         /* RULES */
 
         /**
-         * set_neighbors
+         * get_neighbors
          *
-         * returns a vector of displacements from the current cell to its neighbors of the specified neighborhood.
+         * returns a vector of indices to neighbors of cell at index using the specified neighborhood.
          * 
-         * @param  string neighborhood
+         * @param  int index
          * @return neighbors as a vector of integers.
          */
-        vector<int> set_neighbors(string neighborhood);
+        list<int> get_neighbors(int index);
 
         /**
          * majority_rule
          *
-         * updates the state of a cell at index i in the current_state
+         * updates the state of a cell at index in the current_state by majority rule.
          * 
-         * @param  neighbors(vector) vector of displacements pointing to neighboring cells.
+         * @param  neighbors(vector) vector of indices pointing cells in the neighborhood.
          * @return void.
          */
-        void majority_rule(int i);
+        void majority_rule(int index, vector <int> neighbors);
 
         /**
          * parity_rule
          *
-         * TODO: fill in documentation here
+         * updates the state of a cell at index in the current_state by parity rule. Used for Binary Cellular Automata
          * 
-         * @param  neighbors(vector) vector of displacements pointing to neighboring cells.
-         * @return ???.
+         * @param  neighbors(vector) vector of indices pointing cells in the neighborhood.
+         * @return void.
          */
         void parity_rule();
 
