@@ -26,9 +26,8 @@ CellularAutomaton::CellularAutomaton(
     this->boundary_conditions = boundary_conditions;
     this->rule = rule;
     this->initial_configuration = initial_configuration;
-    //this->neighborhood = neighborhood;
+    this->neighborhood = neighborhood;
     this->sequential = sequential;
-    this->neighbors = set_neighbors(neighborhood);
 }
 
 vector<int> CellularAutomaton::set_neighbors(string neighborhood)  {
