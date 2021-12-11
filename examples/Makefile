@@ -4,7 +4,7 @@
 CXX         = g++      
 
 # compiler flags -g debug, -O3 optimized version -c create a library object
-CXXFLAGS    = -std=c++11 -O3 -o
+CXXFLAGS    =  -std=c++11 -O3 -o
 
 # The directory where the include files needed to create the library objects are
 INC_DIR = ../include
@@ -17,7 +17,7 @@ BIN_DIR     = ../bin
 EXECUTABLES = solute_dispersion
 
 solute_dispersion: $(INC_DIR)/cellular_automaton.h 
-	$(CXX) $(CXXFLAGS) solute_dispersion solute_dispersion.cxx -I$(INC_DIR) $(LIB_DIR)/cellular_automaton_comp.o
+	$(CXX) $(CXXFLAGS) solute_dispersion solute_dispersion.cxx -I$(INC_DIR) $(LIB_DIR)/cellular_automaton.a
 	mv solute_dispersion $(BIN_DIR)
 
 all: $(EXECUTABLES)

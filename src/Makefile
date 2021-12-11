@@ -28,8 +28,9 @@ cellular_automaton_output.o: $(INC_DIR)/cellular_automaton.h
 	$(CXX) $(CXXFLAGS) cellular_automaton_output.cxx -I$(INC_DIR)
 	mv cellular_automaton_output.o $(LIB_DIR)
 
-cellular_automaton.a: 
-	cd $(LIB_DIR); ar cr cellular_automaton.a cellular_automaton_input.o cellular_automaton_comp.o cellular_automaton_output.o
+cellular_automaton.a:
+	ar cr cellular_automaton.a $(LIB_DIR)/cellular_automaton_input.o $(LIB_DIR)/cellular_automaton_comp.o $(LIB_DIR)/cellular_automaton_output.o
+	mv cellular_automaton.a $(LIB_DIR)
 
 all: $(CELLULAR_AUTOMATON_OBJS)
 
