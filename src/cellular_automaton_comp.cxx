@@ -115,7 +115,7 @@ void CellularAutomaton::majority_rule (int index) {
 }
 
 void CellularAutomaton::parity_rule (int index) {
-    vector<int> previous_state= this->snap_shots.back();
+    vector<int> previous_state= this->get_last_snapshot();
     list<int> neighbors = get_neighbors (index);
     int parity_sum=0;
     for (int n:neighbors)   {
