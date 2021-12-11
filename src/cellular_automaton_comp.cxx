@@ -7,42 +7,6 @@
 
 using namespace std;
 
-
-/* CONSTRUCTORS */
-CellularAutomaton::CellularAutomaton() {
-
-}
-
-CellularAutomaton::CellularAutomaton(
-    int n,
-    int m,
-    std::string boundary_conditions,
-    std::string rule,
-    std::string neighborhood,
-    std::vector<int> initial_configuration,
-    bool sequential) 
-{
-    std::cout << "Hello World! From CellularAutomaton constructor!" << std::endl;
-    this->n = n;
-    this->m = m;
-    this->boundary_conditions = boundary_conditions;
-    this->rule = rule;
-    this->neighborhood = neighborhood;
-    this->sequential = sequential;
-    this->current_state=initial_configuration;
-    append_snapshot(initial_configuration);
-
-}
-// n * j - 1 
-void CellularAutomaton::print_grid() {
-    for (int i = 0; i < this->n; i++) {
-        for (int j = 0; j < this-> m; j++) {
-            cout << this->get_last_snapshot()[i * this->n + j] << " ";
-        }
-        cout << endl;
-    }
-}
-
 list<int> CellularAutomaton::get_neighbors(int index)  {
     vector <int> neighbors;
 
