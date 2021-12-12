@@ -22,16 +22,14 @@ void CellularAutomaton::write_snap_shots_to_csv(std::string filename) {
     // Create an output filestream object
     std::ofstream csv(filename);
     
-    // Send the column name to the stream
-    
-    
+    // Set first row of the CSV as column names
     csv << "Time Step,";
     for (int i = 0; i < this->n * this->m - 1; i++) {
         csv << i << ",";
     }
     csv << (this->n * this->m - 1) << "\n";
     
-    // Send data to the stream
+    // Write each snap shot to a row of the CSV
     for(int i = 0; i < this->snap_shots.size(); i++) {
         csv << i << ",";
         std::vector<int> snap_shot = this->snap_shots[i];
@@ -41,6 +39,6 @@ void CellularAutomaton::write_snap_shots_to_csv(std::string filename) {
         csv << snap_shot[snap_shot.size() - 1] << "\n";
     }
     
-    // Close the file
+    // Close the CSV file
     csv.close();
 }
