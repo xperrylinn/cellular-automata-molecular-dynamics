@@ -12,7 +12,7 @@ class CellularAutomaton {
         int m;  // Grid width
         std::vector<int> current_state;
         std::vector<std::vector<int> > snap_shots;
-        std::vector<std::string> boundary_condition_map;  // Vector defines boundary condition type for each side of the CA
+        std::vector<std::string> boundary_condition_map;  // Vector defines boundary condition type for each side of the CA {top, bottom, left, right}
         std::string rule;   // Possible rule
         std::string neighborhood;   // Von Neumann or Moore Neighborhood
         bool sequential;    // Sequential or parallel
@@ -76,20 +76,20 @@ class CellularAutomaton {
         /**
          * print
          *
-         * Appends to the list of snap shots.
+         * Prints the previous last state of the Cellular Automaton in snap_shots.
          * 
-         * @return std::vector<int>
-         */
+         * @return void.
+         * 
         void print_grid();
 
         /**
          * get_neighbors
          *
-         * returns a vector of indices for locaions of neighboring cells using the specified neighborhood 
+         * Returns a list of indices for locaions of neighboring cells using the specified neighborhood 
          * for a given index or cell location.
          * 
          * @param  int index
-         * @return neighbors as a vector of integers.
+         * @return list<int> neighbors.
          */
         list<int> get_neighbors(int index);
 
@@ -118,8 +118,8 @@ class CellularAutomaton {
          *
          * Applies the rule function to each cell of the current state grid.
          * 
-         * @param previous_state previous state grid of type vector<int>.
-         * @return null.
+         * @param none.
+         * @return void.
          */
         void state_transition_function();
 
