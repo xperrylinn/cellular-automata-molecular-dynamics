@@ -38,6 +38,8 @@ void CellularAutomaton::set_boundary_conditions(vector<string> boundary_conditio
 
 void CellularAutomaton::set_neighborhood(string neighborhood)  {
     this->neighborhood = neighborhood;
+}
+
 void CellularAutomaton::vaidate_user_input(
     int n,
     int m,
