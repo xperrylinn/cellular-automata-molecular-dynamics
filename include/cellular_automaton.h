@@ -128,12 +128,12 @@ class CellularAutomaton {
 
         /* OUPUT SERVICES METHODS */
         /**
-         * dispersion_rule
+         * writes the snap shots to a CSV file where there is a column for the
+         * the stamp and a column for each of the grid cells from a row major 
+         * array
          *
-         * TODO: fill in documentation here
-         * 
-         * @param  ???.
-         * @return ???.
+         * @param  file name and path string
+         * @return void.
          */
         void write_snap_shots_to_csv(std::string filename);
 
