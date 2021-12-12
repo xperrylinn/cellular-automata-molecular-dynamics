@@ -76,7 +76,7 @@ int main() {
         4,
         boundary_conds_map_for_ca3,
         "parity",
-        "VanNeumann",
+        "VonNeumann",
         v3,
         true
     );
