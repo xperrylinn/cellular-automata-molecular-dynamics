@@ -41,7 +41,7 @@ int main() {
     vector<int> lsn = ca2.get_last_snapshot();
 
     // Test print_grid()
-    ca2.print_grid();
+    ca2.print_grid(lsn);
 
     // Test get_neighbors()
     for (auto neighbor:ca2.get_neighbors(4))    {
@@ -59,7 +59,7 @@ int main() {
 
     // Test state_transition_function()
     ca2.state_transition_function();
-    ca2.print_grid();
+    ca2.print_current();
 
     // Test parity_rule()
     vector<int> v3 = {
@@ -81,9 +81,9 @@ int main() {
         true
     );
 
-    ca3.print_grid();
+    ca3.print_current();
     ca3.state_transition_function();
-    ca3.print_grid();
+    ca3.print_current();
 
     ca3.write_snap_shots_to_csv("./testing_write_snap_shots_to_csv.csv");
 

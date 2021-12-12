@@ -43,27 +43,86 @@ class SoluteDispersion : public CellularAutomaton {
             for (int i=0; i < this->n * this->m; i++)   {
                 dipsersion_rule(i);
             }
+            fixed_bounds();
             append_snapshot(current_state);
         };
 
+        void fixed_bounds() {
+            if (boundary_condition_map[0] == "fixed") {
+                for (int i=0; i<m; i++)  {
+                    current_state[i]=get_last_snapshot()[i];
+                }
+            }
+            else if (boundary_condition_map[1] == "fixed") {
+                for (int i=0; i<m; i++)  {
+                    current_state[(n-1)*m+i]=get_last_snapshot()[(n-1)*m+i];
+                }
+            }
+            if (boundary_condition_map[2] == "fixed") {
+                for (int i=0; i<n; i++)  {
+                    current_state[m*i]=get_last_snapshot()[m*i];
+                }
+            }
+            else if (boundary_condition_map[3] == "fixed") {
+                for (int i=0; i<n; i++)  {
+                    current_state[m*(i+1)-1]=get_last_snapshot()[m*(i+1)-1];
+                }
+            }
+        }
+
+        int count_cutoffs(int index)   {
+            int cutoffs = 0;
+            if (index < m && boundary_condition_map[0] == "cutoff") {
+                cutoffs +=1;
+            }
+            else if (index >= ((n-1)*m) && boundary_condition_map[1] == "cutoff") {
+                cutoffs +=1;
+            }
+            if (index % m == 0 && boundary_condition_map[2] == "cutoff") {
+                cutoffs +=1;
+            }
+            else if (index % m == m-1 && boundary_condition_map[3] == "cutoff") {
+                cutoffs +=1;
+            }
+            return cutoffs;
+        }
+
+        void cutoff_neighbors(int index, vector<int> & neighbors)   {
+            int cutoffs = count_cutoffs (index);
+            if (this->neighborhood == "VonNeumann")    {
+                for (int i=0; i<cutoffs; i++)   {
+                    neighbors.push_back(-1);
+                }
+            }
+            if (this->neighborhood == "Moore")  {
+                for (int i=0; i <cutoffs; i++)  {
+                    for (int i=0; i <neighbors.size()/2; i++)  {
+                        neighbors.push_back(-1);
+                    }
+                }
+            }
+        }
+    
         void dipsersion_rule(int index) {
             vector<int> previous_state = get_last_snapshot();
             list<int> neighbors = get_neighbors(index);
-            if (neighbors.size() == 0) {
-                std::cout << "hey neighbors size " << neighbors.size() << std::endl;
-            }
-            vector<int> neighbors_as_vector(neighbors.size());
-            std::copy(neighbors.begin(), neighbors.end(), neighbors_as_vector.begin());
+            vector<int> neighbors_as_vector(neighbors.begin(),neighbors.end());
+            cutoff_neighbors(index, neighbors_as_vector);
             int current_cell_value = previous_state[index];
             for (int i = current_cell_value; i > 0; i--) {
                 this->current_state[index] -= 1;
-                if (neighbors.size() == 0) {
-                    std::cout << "hey neighbors size " << neighbors.size() << std::endl;
+                int random_neighbor = neighbors_as_vector[rand() % neighbors_as_vector.size()];
+                if (random_neighbor != -1)  {
+                    this->current_state[random_neighbor] += 1;
                 }
-                int random_neighbor = neighbors_as_vector[rand() % neighbors.size()];
-                this->current_state[random_neighbor] += 1;
             }
         }
+
+        void n_transitions(int n)     {
+            for (int i=0; i<n; i++)   {
+                state_transition_function();
+        }
+    };
 };
 
 int main() {
@@ -76,7 +135,7 @@ int main() {
         0, 0, 0, 0,
     };
 
-    vector<string> boundary_conds_map_for_ca3 = {"cutoff","cutoff", "periodic", "periodic"};
+    vector<string> boundary_conds_map_for_ca3 = {"cutoff","cutoff", "period", "period"};
 
     SoluteDispersion sa = SoluteDispersion(
         4,
@@ -89,19 +148,10 @@ int main() {
         true
     );
 
-    sa.print_grid();
     sa.state_transition_function();
-    sa.print_grid();
-    sa.state_transition_function();
-    sa.print_grid();
-    sa.state_transition_function();
-    sa.print_grid();
-    sa.state_transition_function();
-    sa.print_grid();
-    sa.state_transition_function();
-    sa.print_grid();
-    sa.state_transition_function();
-    sa.print_grid();
+    sa.print_current();
+    sa.n_transitions(20);
+    sa.print_all_states();
 
     sa.write_snap_shots_to_csv("./solute_dispersion.csv");
     

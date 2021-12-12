@@ -9,13 +9,31 @@
 using namespace std;
 
 // n * j - 1 
-void CellularAutomaton::print_grid() {
+void CellularAutomaton::print_grid(vector<int> state) {
     for (int i = 0; i < this->n; i++) {
         for (int j = 0; j < this-> m; j++) {
-            cout << this->get_last_snapshot()[i * this->n + j] << " ";
+            cout << state[i * this->n + j] << " ";
         }
         cout << endl;
     }
+}
+
+void CellularAutomaton::print_current() {
+    print_grid(get_last_snapshot());
+}
+
+void CellularAutomaton::print_all_states() {
+    for (vector<int> snapshot:snap_shots)   {
+        print_grid(snapshot);
+        cout<<endl;
+    }
+}
+
+void CellularAutomaton::print_neighbors(vector<int> neighbors) {
+    for (int i = 0; i < neighbors.size(); i++) {
+        cout << neighbors[i] << " ";
+    }
+    cout << endl;
 }
 
 void CellularAutomaton::write_snap_shots_to_csv(std::string filename) {

@@ -93,15 +93,42 @@ class CellularAutomaton {
          */
         vector<int> get_last_snapshot();
 
+        /* PRINTING TO COUT */
+
         /**
-         * print
+         * print_grid
          *
-         * Prints the last state of the Cellular Automaton in snap_shots to std::cout.
+         * Prints a state of the Cellular Automaton in snap_shots to std::cout.
          * 
+         * @param vector<int>
          * @return void.
          * 
          */
-        void print_grid();
+        void print_grid(vector<int> state);
+
+        /**
+         * print_current
+         *
+         * Prints the last state of the Cellular Automaton in snap_shots to std::cout.
+         * 
+         * @param void.
+         * @return void.
+         * 
+         */
+        void print_current();
+
+        /**
+         * print_all_states
+         *
+         * Prints a state of the Cellular Automaton in snap_shots to std::cout.
+         * 
+         * @param void.
+         * @return void.
+         * 
+         */
+        void print_all_states();
+
+        void print_neighbors(vector<int> neighbors);
 
         /* STATE TRANITION FUNCTION */
 
@@ -114,6 +141,16 @@ class CellularAutomaton {
          * @return void.
          */
         void state_transition_function();
+
+        /**
+         * n_transitions()
+         *
+         * Applies state transition function for n iterations
+         * 
+         * @param int n interations
+         * @return void.
+         */
+        void n_transitions(int n);
 
         /* RULES */
 

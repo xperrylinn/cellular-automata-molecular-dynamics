@@ -70,7 +70,7 @@ vector<int> CellularAutomaton::Moore_neighbors(int & index)  {
             }
         }
     }
-    if (index % m == m-1)  {
+    if (index % m == 0)  {
         for (int i=0; i<3; i++) {
             if (boundary_condition_map[2] == "periodic")  {
                 neighbors[3*i]+= m;
@@ -156,6 +156,13 @@ void CellularAutomaton::state_transition_function()     {
     }
     append_snapshot(current_state);
 };
+
+void CellularAutomaton::n_transitions(int n)     {
+    for (int i=0; i<n; i++)   {
+        state_transition_function();
+    }
+};
+
 
 
 // ostream& operator<<(ostream& os, const CellularAutomaton& ca) {
