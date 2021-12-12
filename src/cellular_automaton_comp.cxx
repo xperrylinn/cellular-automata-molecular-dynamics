@@ -93,12 +93,6 @@ vector<int> CellularAutomaton::Moore_neighbors(int index)  {
     return neighbors;
 }
 
-list<int> processing_neighbors(vector<int> neighbors)    {
-    list<int> list_neighbors(neighbors.begin(), neighbors.end());
-    list_neighbors.remove(-1);
-    return list_neighbors;
-}
-
 list<int> CellularAutomaton::get_neighbors(int index)  {
     vector <int> neighbors;
     if (this->neighborhood == "VonNeumann") { 

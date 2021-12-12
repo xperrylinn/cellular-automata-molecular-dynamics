@@ -17,12 +17,12 @@ CellularAutomaton::CellularAutomaton(
     int n,
     int m,
     vector<string> boundary_condition_map,
-    std::string rule,
-    std::string neighborhood,
-    std::vector<int> initial_configuration,
+    string rule,
+    string neighborhood,
+    vector<int> initial_configuration,
     bool sequential) 
 {
-    std::cout << "Hello World! From CellularAutomaton constructor!" << std::endl;
+    cout << "Hello World! From CellularAutomaton constructor!" << endl;
     this->n = n;
     this->m = m;
     this->boundary_condition_map = boundary_condition_map;
