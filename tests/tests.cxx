@@ -72,12 +72,12 @@ int main() {
     vector<string> boundary_conds_map_for_ca3 = {"cutoff","cutoff", "periodic", "periodic"};
 
     CellularAutomaton ca3 = CellularAutomaton(
-        3,
-        3,
+        4,
+        4,
         boundary_conds_map_for_ca3,
         "parity",
-        "VonNeumann",
-        v,
+        "VanNeumann",
+        v3,
         true
     );
 

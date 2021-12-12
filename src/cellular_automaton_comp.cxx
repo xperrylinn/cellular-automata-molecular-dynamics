@@ -113,7 +113,7 @@ list<int> CellularAutomaton::get_neighbors(int index)  {
 
 void CellularAutomaton::majority_rule (int index) {
     vector<int> hashtable = {0};
-    vector<int> previous_state= get_last_snapshot();
+    vector<int> previous_state = get_last_snapshot();
     list<int> neighbors = get_neighbors (index);
     for (int n:neighbors)   {
         int neighbor_value = previous_state[n];
