@@ -12,11 +12,51 @@ class CellularAutomaton {
         int m;  // Grid width
         std::vector<int> current_state;
         std::vector<std::vector<int> > snap_shots;
-        std::vector<std::string> boundary_condition_map;  // Map from boundary cell index location to boundary condition type
+        std::vector<std::string> boundary_condition_map;  // Vector defines boundary condition type for each side of the CA
         std::string rule;   // Possible rule
         std::string neighborhood;   // Von Neumann or Moore Neighborhood
         bool sequential;    // Sequential or parallel
         std::vector<int> initial_configuration;
+
+        /* NEIGHBOR FUNCTIONS */
+
+        /**
+         * VonNeumann_neighbors
+         *
+         * returns a vector of indices for locations of neighboring cells using the Von Neumann neighborhood, 
+         * then does pre-processing of the vector considering the boundary conditions.
+         *      If the boundary is periodic, it adjusts the neighbor to the correct index.
+         *      Otherwise for other boundary conditions, it changes the index to -1.
+         * VonNeumann neighborhood: (top, left, center, right, bottom)
+         * 
+         * @param  int index
+         * @return neighbors as a vector of integers.
+         */
+        vector<int> VonNeumann_neighbors(int index);
+
+        /**
+         * Moore_neighbors
+         *
+         * returns a vector of indices for locations of neighboring cells using the Moore neighborhood, 
+         * then does pre-processing of the vector considering the boundary conditions.
+         *      If the boundary is periodic, it adjusts the neighbor to the correct index.
+         *      Otherwise for other boundary conditions, it changes the index to -1.
+         * Moore neighborhood: (top left, top, top right, left, center, right, bottom left, bottom , bottom right)
+         * 
+         * @param  int index
+         * @return neighbors as a vector of integers.
+         */
+        vector<int> Moore_neighbors(int index);
+
+        /**
+         * processing_neighbors
+         *
+         * converts the vector neighbors into a list, and removes all -1 from the list of neighbors.
+         * 
+         * @param  neighbors as a vector of integers.
+         * @return neighbors as a list of integers.
+         */
+        list<int> processing_neighbors(vector<int>neighbors);
 
     public:
         /* CONSTRUCTORS */
@@ -41,6 +81,17 @@ class CellularAutomaton {
          * @return std::vector<int>
          */
         void print_grid();
+
+        /**
+         * get_neighbors
+         *
+         * returns a vector of indices for locaions of neighboring cells using the specified neighborhood 
+         * for a given index or cell location.
+         * 
+         * @param  int index
+         * @return neighbors as a vector of integers.
+         */
+        list<int> get_neighbors(int index);
 
         /**
          * get_last_snapshot
@@ -84,17 +135,6 @@ class CellularAutomaton {
         void snap_shot(vector<int> state);
 
         /* RULES */
-
-        /**
-         * get_neighbors
-         *
-         * returns a vector of indices for locaions of neighboring cells using the specified neighborhood 
-         * for a given index or cell location.
-         * 
-         * @param  int index
-         * @return neighbors as a vector of integers.
-         */
-        list<int> get_neighbors(int index);
 
         /**
          * majority_rule

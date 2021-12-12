@@ -32,7 +32,7 @@ int main() {
         3,
         boundary_conds_map_for_ca2,
         "majority",
-        "VanNeumann",
+        "VonNeumann",
         v,
         true
     );

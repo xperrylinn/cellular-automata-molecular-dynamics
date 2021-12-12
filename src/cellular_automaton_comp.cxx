@@ -7,98 +7,108 @@
 
 using namespace std;
 
-list<int> CellularAutomaton::get_neighbors(int index)  {
-vector <int> neighbors;
 
-    if (this->neighborhood == "VanNeumann") {   // VanNeumann neighborhood: (top, left, center, right, bottom)
-        neighbors =  {index - this->m, index - 1, index, index + 1, index + this->m};
+vector<int> CellularAutomaton::VonNeumann_neighbors(int index)  {
+    vector <int> neighbors =  {index - this->m, index - 1, index, index + 1, index + this->m};
+    if (index < m)  {
+        if (boundary_condition_map[0] == "periodic")  {
+            neighbors[0]+= n*m;
+        }
+        else {
+            neighbors[0]=-1;
+        }
+    }
+    
+    else if (index >= ((n-1)*m))  {
+        if (boundary_condition_map[1] == "periodic")  {
+            neighbors[4]-= n*m;
+        }
+        else    {
+            neighbors[4]=-1;
+        }
+    }
 
-        if (index < m)  {
+    if (index % m == 0)  {
+        if (boundary_condition_map[2] == "periodic")  {
+            neighbors[1]+= m;
+        }
+        else    {
+            neighbors[1]=-1;
+        }
+    }
+
+    else if (index % m == m-1)  {
+        if (boundary_condition_map[3] == "periodic")  {
+            neighbors[3]-= m;
+        }
+        else    {
+            neighbors[3]=-1;
+        }
+    }
+    return neighbors;
+}
+
+vector<int> CellularAutomaton::Moore_neighbors(int index)  {
+    vector <int> neighbors =  {index - this->m - 1, index - this->m, index - this->m + 1, index - 1, index, index + 1, index + this->m - 1, index + this->m, index + this->m +1};        
+    if (index < m)  {
+        for (int i=0; i<3; i++) {
             if (boundary_condition_map[0] == "periodic")  {
-                neighbors[0]+= n*m;
+                neighbors[i]+= n*m;
             }
-            else {
-                neighbors[0]=-1;
+            else    {
+                neighbors[i]= -1;
             }
         }
-        
-        else if (index >= ((n-1)*m))  {
+    }
+    else if (index >= ((n-1)*m))  {
+        for (int i=6; i<9; i++) {
             if (boundary_condition_map[1] == "periodic")  {
-                neighbors[4]-= n*m;
+                neighbors[i]-= n*m;
             }
             else    {
-                neighbors[4]=-1;
+                neighbors[i]= -1;
             }
         }
-
-        if (index % m == 0)  {
+    }
+    if (index % m == m-1)  {
+        for (int i=0; i<3; i++) {
             if (boundary_condition_map[2] == "periodic")  {
-                neighbors[1]+= m;
+                neighbors[3*i]+= m;
             }
             else    {
-                neighbors[1]=-1;
+                neighbors[3*i]= -1;
             }
         }
-
-        else if (index % m == m-1)  {
+    }
+    else if (index % m == m-1)  {
+        for (int i=0; i<3; i++) {
             if (boundary_condition_map[3] == "periodic")  {
-                neighbors[3]-= m;
+                neighbors[3*i+2]-= m;
             }
             else    {
-                neighbors[3]=-1;
+                neighbors[3*i+2]-= m;
             }
         }
     }
+    return neighbors;
+}
 
-    if (this->neighborhood == "Moore") {    // Moore neighborhood: (top left, top, top right, left, center, right, bottom left, bottom , bottom right)
-        neighbors =  {index - this->m - 1, index - this->m, index - this->m + 1, index - 1, index, index + 1, index + this->m - 1, index + this->m, index + this->m +1};
-        
-        if (index < m)  {
-            for (int i=0; i<3; i++) {
-                if (boundary_condition_map[0] == "periodic")  {
-                    neighbors[i]+= n*m;
-                }
-                else    {
-                    neighbors[i]= -1;
-                }
-            }
-        }
-        else if (index >= ((n-1)*m))  {
-            for (int i=6; i<9; i++) {
-                if (boundary_condition_map[1] == "periodic")  {
-                    neighbors[i]-= n*m;
-                }
-                else    {
-                    neighbors[i]= -1;
-                }
-            }
-
-        if (index % m == m-1)  {
-            for (int i=0; i<3; i++) {
-                if (boundary_condition_map[2] == "periodic")  {
-                    neighbors[3*i]+= m;
-                }
-                else    {
-                    neighbors[3*i]= -1;
-                }
-            }
-        }
-        else if (index % m == m-1)  {
-            for (int i=0; i<3; i++) {
-                if (boundary_condition_map[3] == "periodic")  {
-                    neighbors[3*i+2]-= m;
-                }
-                else    {
-                    neighbors[3*i+2]-= m;
-                }
-            }
-        }
-    }
-    // convert vector to list
+list<int> processing_neighbors(vector<int> neighbors)    {
     list<int> list_neighbors(neighbors.begin(), neighbors.end());
     list_neighbors.remove(-1);
     return list_neighbors;
+}
+
+list<int> CellularAutomaton::get_neighbors(int index)  {
+    vector <int> neighbors;
+    if (this->neighborhood == "VonNeumann") { 
+        neighbors =  VonNeumann_neighbors(index);
     }
+    if (this->neighborhood == "Moore") {  
+        neighbors =  Moore_neighbors(index);
+    }
+    list<int> list_neighbors=processing_neighbors(neighbors);
+    return list_neighbors;
 }
 
 void CellularAutomaton::majority_rule (int index) {
@@ -117,7 +127,7 @@ void CellularAutomaton::majority_rule (int index) {
 }
 
 void CellularAutomaton::parity_rule (int index) {
-    vector<int> previous_state= this->get_last_snapshot();
+    vector<int> previous_state= get_last_snapshot();
     list<int> neighbors = get_neighbors (index);
     int parity_sum=0;
     for (int n:neighbors)   {
