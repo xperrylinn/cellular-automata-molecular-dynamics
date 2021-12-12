@@ -55,7 +55,7 @@ class SoluteDispersion : public CellularAutomaton {
             vector<int> neighbors_as_vector(neighbors.size());
             std::copy(neighbors.begin(), neighbors.end(), neighbors_as_vector.begin());
             int current_cell_value = previous_state[index];
-            for (int i = 0; i < current_cell_value; i--) {
+            for (int i = current_cell_value; i > 0; i--) {
                 this->current_state[index] -= 1;
                 if (neighbors.size() == 0) {
                     std::cout << "hey neighbors size " << neighbors.size() << std::endl;
@@ -83,7 +83,7 @@ int main() {
         4,
         boundary_conds_map_for_ca3,
         "parity",
-        "VanNeumann",
+        "VonNeumann",
         v3,
         5,
         true
