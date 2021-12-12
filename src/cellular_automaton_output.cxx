@@ -30,8 +30,8 @@ void CellularAutomaton::print_all_states() {
 }
 
 void CellularAutomaton::print_neighbors(vector<int> neighbors) {
-    for (int i = 0; i < neighbors.size(); i++) {
-        cout << neighbors[i] << " ";
+    for (auto it:neighbors) {
+        cout << it << " ";
     }
     cout << endl;
 }
