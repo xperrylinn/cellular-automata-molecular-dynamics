@@ -7,7 +7,7 @@
 using namespace std;
 
 class CellularAutomaton {
-    private:
+    protected:
         int n;  // Grid lenth
         int m;  // Grid width
         std::vector<int> current_state;

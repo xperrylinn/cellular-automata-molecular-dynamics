@@ -1,10 +1,12 @@
 #include<cellular_automaton.h>
 #include<iostream>
-
+#include<random>
 
 class SoluteDispersion : public CellularAutomaton {
-    public:
+    private:
+        int max_solutes_per_cell;
 
+    public:
         SoluteDispersion() {
             std::cout << "Hello World! From SolutionDispersion() constructor" << std::endl;
         };
@@ -16,6 +18,7 @@ class SoluteDispersion : public CellularAutomaton {
             std::string rule,
             std::string neighborhood,
             std::vector<int> initial_configuration,
+            int max_solutes_per_cell,
             bool sequential=true
         ): CellularAutomaton(
             n, 
@@ -28,6 +31,7 @@ class SoluteDispersion : public CellularAutomaton {
             ) 
         {
             std::cout << "Hello World! From SolutionDispersion(with args) constructor" << std::endl;
+            this->max_solutes_per_cell = max_solutes_per_cell;
         };
 
         void print_hello_world() {
@@ -43,16 +47,14 @@ class SoluteDispersion : public CellularAutomaton {
         };
 
         void dipsersion_rule(int index) {
-            vector<int> hashtable = {0};
             vector<int> previous_state = get_last_snapshot();
-            list<int> neighbors = get_neighbors (index);
-            for (int n:neighbors)   {
-                int neighbor_value = previous_state[n];
-                int current_cell_value = previous_state[index];
-                if (neighbor_value < current_cell_value) {
-                    std::cout << "hi" << std::endl;
-                }
+            list<int> neighbors = get_neighbors(index);
+            int current_cell_value = previous_state[index];
+            for (int i = 0; i < current_cell_value; i++) {
+                this->current_state[index] -= 1;
+                int random_neighbor = neighbors.get(rand() % neighbors.size());
             }
+
             this->current_state[index]=1;
         }
 
@@ -77,6 +79,7 @@ int main() {
         "parity",
         "VanNeumann",
         v3,
+        5,
         true
     );
 
