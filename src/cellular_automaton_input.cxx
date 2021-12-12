@@ -37,3 +37,7 @@ CellularAutomaton::CellularAutomaton(
 void CellularAutomaton::set_boundary_conditions(vector<string> boundary_condition_map)  {
     this->boundary_condition_map = boundary_condition_map;
 }
+
+void CellularAutomaton::set_neighborhood(string neighborhood)  {
+    this->neighborhood = neighborhood;
+}

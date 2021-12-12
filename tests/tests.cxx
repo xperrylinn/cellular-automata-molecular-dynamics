@@ -28,7 +28,7 @@ int main() {
     vector<string> periodic_bounds = {"periodic", "periodic", "periodic", "periodic"};
 
     cout<<"Test set 1: Constructing a Cellular Automaton and print_current()"<<endl;
-    cout<<endl<<"Dimensions: 3x3"<<"Boundary Condition: Periodic"<<endl <<"Rule: Majority Rule"<<endl<<"Neighboorhood: Von Neumann"<<endl;
+    cout<<endl<<"Dimensions: 4x4"<<"Boundary Condition: Periodic"<<endl <<"Neighboorhood: Von Neumann"<<endl;
 
     CellularAutomaton ca2 = CellularAutomaton(
         4,
@@ -77,21 +77,59 @@ int main() {
         cout<<neighbor<<" ";
     }
     cout<<endl;
-    // Test get_neighbors(), cutoff, fixed
+    
     // Test set_boundary_condition
-    cout<<"Changing boundary conditions: Cutoff for bottom, no bounds for other sides..."<<endl;
+    cout<<endl<<"Changing boundary conditions: Cutoff for bottom, no bounds for other sides..."<<endl;
     vector<string> single_wall = {"none", "cutoff", "none", "none"};
     ca2.set_boundary_conditions(single_wall);
+
+    // Test get_neighbors(), cutoff, fixed
     cout<<endl<<"Testing for cutoff,no bounds. These bounds are interpreted the same in get_neighbors()"<<endl<<"Neighbors to Cell 1:"<<endl;
     for (auto neighbor:ca2.get_neighbors(1))    {
         cout<<neighbor<<" ";
     }
-    cout<<endl<<endl<<"Neighbors to Cell 12:"<<endl;
+    cout<<endl<<"Neighbors to Cell 12:"<<endl;
     for (auto neighbor:ca2.get_neighbors(12))    {
         cout<<neighbor<<" ";
     }
     cout<<endl;
 
+    // Test set_neighborhood()
+    cout<<endl<<"Changing neighborhood consideration: Moore"<<endl;
+    ca2.set_neighborhood("Moore");
+
+    cout<<"Changing boundary conditions: Cutoff for bottom, periodic on left and right sides..."<<endl;
+    vector<string> periodic_wall = {"none", "cutoff", "periodic", "periodic"};
+    ca2.set_boundary_conditions(periodic_wall);
+
+    cout<<endl<<"Neighbors to Cell 0:"<<endl;
+    for (auto neighbor:ca2.get_neighbors(0))    {
+        cout<<neighbor<<" ";
+    }
+    cout<<endl<<"Neighbors to Cell 7:"<<endl;
+    for (auto neighbor:ca2.get_neighbors(7))    {
+        cout<<neighbor<<" ";
+    }
+    cout<<endl<<"Neighbors to Cell 15:"<<endl;
+    for (auto neighbor:ca2.get_neighbors(15))    {
+        cout<<neighbor<<" ";
+    }
+    cout<<endl;
+
+    /*SECTION 3
+    *   TESTING RULES
+    */
+
+    cout<<"Test set 3: Testing majority_rule() and parity rule()"<<endl;
+    cout<<"Constructing a Cellular Automaton..."<<endl;
+    cout<<endl<<"Dimensions: 3x3"<<"Boundary Condition: Periodic"<<endl <<"Rule: Majority Rule"<<endl<<"Neighboorhood: Von Neumann"<<endl;
+
+    vector<int> binary = {
+        1, 1, 1, 0,
+        1, 1, 1, 0,
+        0, 1, 1, 0,
+        0, 0, 0, 0,
+    };
 
     // Test Majority Rule()
     ca2.majority_rule(3);
@@ -107,6 +145,8 @@ int main() {
         0, 1, 1, 0,
         0, 0, 0, 0,
     };
+
+
 
     vector<string> boundary_conds_map_for_ca3 = {"cutoff","cutoff", "periodic", "periodic"};
 

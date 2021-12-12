@@ -19,35 +19,7 @@ class CellularAutomaton {
         vector<int> initial_configuration;
 
 
-        /* NEIGHBOR FUNCTIONS */
 
-        /**
-         * VonNeumann_neighbors
-         *
-         * returns a vector of indices for locations of neighboring cells using the Von Neumann neighborhood, 
-         * then does pre-processing of the vector considering the boundary conditions.
-         *      If the boundary is periodic, it adjusts the neighbor to the correct index.
-         *      Otherwise for other boundary conditions, it changes the index to -1.
-         * VonNeumann neighborhood: (top, left, center, right, bottom)
-         * 
-         * @param  int index
-         * @return neighbors as a vector of integers.
-         */
-        vector<int> VonNeumann_neighbors(int & index);
-
-        /**
-         * Moore_neighbors
-         *
-         * returns a vector of indices for locations of neighboring cells using the Moore neighborhood, 
-         * then does pre-processing of the vector considering the boundary conditions.
-         *      If the boundary is periodic, it adjusts the neighbor to the correct index.
-         *      Otherwise for other boundary conditions, it changes the index to -1.
-         * Moore neighborhood: (top left, top, top right, left, center, right, bottom left, bottom , bottom right)
-         * 
-         * @param  int index
-         * @return neighbors as a vector of integers.
-         */
-        vector<int> Moore_neighbors(int & index);
 
     public:
         /* CONSTRUCTORS */
@@ -64,6 +36,36 @@ class CellularAutomaton {
         );
 
         /* HELPER AND CONVINENCE FUNCTIONS */
+
+        /* NEIGHBOR FUNCTIONS */
+
+        /**
+         * VonNeumann_neighbors
+         *
+         * returns a vector of indices for locations of neighboring cells using the Von Neumann neighborhood, 
+         * then does pre-processing of the vector considering the boundary conditions.
+         *      If the boundary is periodic, it adjusts the neighbor to the correct index.
+         *      Otherwise for other boundary conditions, it changes the index to -1.
+         * VonNeumann neighborhood: (top, left, center, right, bottom)
+         * 
+         * @param  int index
+         * @return neighbors as a vector of integers.
+         */
+        vector<int> VonNeumann_neighbors(int index);
+
+        /**
+         * Moore_neighbors
+         *
+         * returns a vector of indices for locations of neighboring cells using the Moore neighborhood, 
+         * then does pre-processing of the vector considering the boundary conditions.
+         *      If the boundary is periodic, it adjusts the neighbor to the correct index.
+         *      Otherwise for other boundary conditions, it changes the index to -1.
+         * Moore neighborhood: (top left, top, top right, left, center, right, bottom left, bottom , bottom right)
+         * 
+         * @param  int index
+         * @return neighbors as a vector of integers.
+         */
+        vector<int> Moore_neighbors(int index);
 
         /**
          * get_neighbors
@@ -97,6 +99,10 @@ class CellularAutomaton {
         /*
         */
         void set_boundary_conditions(vector<string> boundary_condition_map);
+
+        /*
+        */
+        void set_neighborhood(string neighborhood);
 
         /* PRINTING TO COUT */
 
