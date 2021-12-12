@@ -18,6 +18,7 @@ class CellularAutomaton {
         bool sequential;    // Sequential or parallel
         vector<int> initial_configuration;
 
+
         /* NEIGHBOR FUNCTIONS */
 
         /**
@@ -92,6 +93,10 @@ class CellularAutomaton {
          * @return vector<int>
          */
         vector<int> get_last_snapshot();
+
+        /*
+        */
+        void set_boundary_conditions(vector<string> boundary_condition_map);
 
         /* PRINTING TO COUT */
 

@@ -70,25 +70,25 @@ class SoluteDispersion : public CellularAutomaton {
             }
         }
 
-        int count_cutoffs(int index)   {
+        int count_no_borders(int index)   {
             int cutoffs = 0;
-            if (index < m && boundary_condition_map[0] == "cutoff") {
+            if (index < m && boundary_condition_map[0] == "none") {
                 cutoffs +=1;
             }
-            else if (index >= ((n-1)*m) && boundary_condition_map[1] == "cutoff") {
+            else if (index >= ((n-1)*m) && boundary_condition_map[1] == "none") {
                 cutoffs +=1;
             }
-            if (index % m == 0 && boundary_condition_map[2] == "cutoff") {
+            if (index % m == 0 && boundary_condition_map[2] == "none") {
                 cutoffs +=1;
             }
-            else if (index % m == m-1 && boundary_condition_map[3] == "cutoff") {
+            else if (index % m == m-1 && boundary_condition_map[3] == "none") {
                 cutoffs +=1;
             }
             return cutoffs;
         }
 
-        void cutoff_neighbors(int index, vector<int> & neighbors)   {
-            int cutoffs = count_cutoffs (index);
+        void add_neighbors(int index, vector<int> & neighbors)   {
+            int cutoffs = count_no_borders (index);
             if (this->neighborhood == "VonNeumann")    {
                 for (int i=0; i<cutoffs; i++)   {
                     neighbors.push_back(-1);
@@ -107,7 +107,7 @@ class SoluteDispersion : public CellularAutomaton {
             vector<int> previous_state = get_last_snapshot();
             list<int> neighbors = get_neighbors(index);
             vector<int> neighbors_as_vector(neighbors.begin(),neighbors.end());
-            cutoff_neighbors(index, neighbors_as_vector);
+            add_neighbors(index, neighbors_as_vector);
             int current_cell_value = previous_state[index];
             for (int i = current_cell_value; i > 0; i--) {
                 this->current_state[index] -= 1;

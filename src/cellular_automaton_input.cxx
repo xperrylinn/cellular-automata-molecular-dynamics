@@ -33,3 +33,7 @@ CellularAutomaton::CellularAutomaton(
     append_snapshot(initial_configuration);
 
 }
+
+void CellularAutomaton::set_boundary_conditions(vector<string> boundary_condition_map)  {
+    this->boundary_condition_map = boundary_condition_map;
+}
