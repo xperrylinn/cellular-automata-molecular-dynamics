@@ -1,4 +1,5 @@
 #include<cellular_automaton.h>
+#include<algorithm>
 #include<iostream>
 #include<random>
 
@@ -40,8 +41,7 @@ class SoluteDispersion : public CellularAutomaton {
 
         void state_transition_function()     {
             for (int i=0; i < this->n * this->m; i++)   {
-                std::cout << "Hello World! From SoluteDispersion.state_transition_function" << std::endl;
-                // Todo: add code here to call dispersion rule
+                dipsersion_rule(i);
             }
             append_snapshot(current_state);
         };
@@ -49,15 +49,21 @@ class SoluteDispersion : public CellularAutomaton {
         void dipsersion_rule(int index) {
             vector<int> previous_state = get_last_snapshot();
             list<int> neighbors = get_neighbors(index);
-            int current_cell_value = previous_state[index];
-            for (int i = 0; i < current_cell_value; i++) {
-                this->current_state[index] -= 1;
-                int random_neighbor = neighbors.get(rand() % neighbors.size());
+            if (neighbors.size() == 0) {
+                std::cout << "hey neighbors size " << neighbors.size() << std::endl;
             }
-
-            this->current_state[index]=1;
+            vector<int> neighbors_as_vector(neighbors.size());
+            std::copy(neighbors.begin(), neighbors.end(), neighbors_as_vector.begin());
+            int current_cell_value = previous_state[index];
+            for (int i = 0; i < current_cell_value; i--) {
+                this->current_state[index] -= 1;
+                if (neighbors.size() == 0) {
+                    std::cout << "hey neighbors size " << neighbors.size() << std::endl;
+                }
+                int random_neighbor = neighbors_as_vector[rand() % neighbors.size()];
+                this->current_state[random_neighbor] += 1;
+            }
         }
-
 };
 
 int main() {
@@ -72,7 +78,7 @@ int main() {
 
     vector<string> boundary_conds_map_for_ca3 = {"cutoff","cutoff", "periodic", "periodic"};
 
-    SoluteDispersion(
+    SoluteDispersion sa = SoluteDispersion(
         4,
         4,
         boundary_conds_map_for_ca3,
@@ -82,6 +88,10 @@ int main() {
         5,
         true
     );
+
+    sa.print_grid();
+    sa.state_transition_function();
+    sa.print_grid();
 
     return 0;
 }
