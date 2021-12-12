@@ -92,6 +92,16 @@ int main() {
     sa.print_grid();
     sa.state_transition_function();
     sa.print_grid();
+    sa.state_transition_function();
+    sa.print_grid();
+    sa.state_transition_function();
+    sa.print_grid();
+    sa.state_transition_function();
+    sa.print_grid();
+    sa.state_transition_function();
+    sa.print_grid();
+    sa.state_transition_function();
+    sa.print_grid();
 
     return 0;
 }
