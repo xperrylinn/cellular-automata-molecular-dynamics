@@ -8,7 +8,7 @@
 using namespace std;
 
 
-vector<int> CellularAutomaton::VonNeumann_neighbors(int index)  {
+vector<int> CellularAutomaton::VonNeumann_neighbors(int & index)  {
     vector <int> neighbors =  {index - this->m, index - 1, index, index + 1, index + this->m};
     if (index < m)  {
         if (boundary_condition_map[0] == "periodic")  {
@@ -48,7 +48,7 @@ vector<int> CellularAutomaton::VonNeumann_neighbors(int index)  {
     return neighbors;
 }
 
-vector<int> CellularAutomaton::Moore_neighbors(int index)  {
+vector<int> CellularAutomaton::Moore_neighbors(int & index)  {
     vector <int> neighbors =  {index - this->m - 1, index - this->m, index - this->m + 1, index - 1, index, index + 1, index + this->m - 1, index + this->m, index + this->m +1};        
     if (index < m)  {
         for (int i=0; i<3; i++) {
