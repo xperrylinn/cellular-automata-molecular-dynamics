@@ -12,8 +12,7 @@ class CellularAutomaton {
         int m;  // Grid width
         std::vector<int> current_state;
         std::vector<std::vector<int> > snap_shots;
-        std::string default_boundary_conditions;
-        std::map<int, std::string> cell_boundary_condition_map;  // Map from boundary cell index location to boundary condition type
+        std::vector<std::string> boundary_condition_map;  // Map from boundary cell index location to boundary condition type
         std::string rule;   // Possible rule
         std::string neighborhood;   // Von Neumann or Moore Neighborhood
         bool sequential;    // Sequential or parallel
