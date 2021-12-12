@@ -7,13 +7,14 @@
 
 using namespace std;
 
+
 list<int> CellularAutomaton::get_neighbors(int index)  {
     vector <int> neighbors;
 
     if (this->neighborhood == "VanNeumann") {   // VanNeumann neighborhood: (top, left, center, right, bottom)
         neighbors =  {index - this->m, index - 1, index, index + 1, index + this->m};
 
-        if (boundary_conditions == "periodic")  {
+        if (default_boundary_conditions == "periodic")  {
             if (index < m)  {
                 neighbors[0]+= n*m;
             }
@@ -28,7 +29,7 @@ list<int> CellularAutomaton::get_neighbors(int index)  {
             }
         }
 
-        if (boundary_conditions == "cutoff" || boundary_conditions == "none")   {
+        if (default_boundary_conditions == "cutoff" || default_boundary_conditions == "none")   {
             if (index < m)  {
                 neighbors[0]=-1;
             }
@@ -47,7 +48,7 @@ list<int> CellularAutomaton::get_neighbors(int index)  {
     if (this->neighborhood == "Moore") {    // Moore neighborhood: (top left, top, top right, left, center, right, bottom left, bottom , bottom right)
         neighbors =  {index - this->m - 1, index - this->m, index - this->m + 1, index - 1, index, index + 1, index + this->m - 1, index + this->m, index + this->m +1};
         
-        if (boundary_conditions == "periodic")  {
+        if (default_boundary_conditions == "periodic")  {
             if (index < m)  {
                 for (int i=0; i<3; i++) {
                     neighbors[i]+= n*m;
@@ -70,7 +71,7 @@ list<int> CellularAutomaton::get_neighbors(int index)  {
             }
         }
 
-        if (boundary_conditions == "cutoff" || boundary_conditions == "none")   {
+        if (default_boundary_conditions == "cutoff" || default_boundary_conditions == "none")   {
             if (index < m)  {
                 for (int i=0; i<3; i++) {
                     neighbors[i]= -1;
@@ -132,6 +133,16 @@ void CellularAutomaton::parity_rule (int index) {
 
 std::vector<int> CellularAutomaton::get_last_snapshot() {
     return this->snap_shots.back();
+}
+
+std::string CellularAutomaton::get_cell_boundary_condition(int index) {
+    std::map<int,std::string>::iterator it;
+    it = cell_boundary_condition_map.find(index);
+    if (it != cell_boundary_condition_map.end()) {
+        return this->cell_boundary_condition_map[index];
+    } else {
+        return this->default_boundary_conditions;
+    }
 }
 
 void CellularAutomaton::append_snapshot(std::vector<int> snap_shot) {

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include <list>
 
 using namespace std;
@@ -11,7 +12,8 @@ class CellularAutomaton {
         int m;  // Grid width
         std::vector<int> current_state;
         std::vector<std::vector<int> > snap_shots;
-        std::string boundary_conditions;
+        std::string default_boundary_conditions;
+        std::map<int, std::string> cell_boundary_condition_map;  // Map from boundary cell index location to boundary condition type
         std::string rule;   // Possible rule
         std::string neighborhood;   // Von Neumann or Moore Neighborhood
         bool sequential;    // Sequential or parallel
@@ -24,7 +26,8 @@ class CellularAutomaton {
         CellularAutomaton(
             int n,
             int m,
-            std::string boundary_conditions,
+            std::string default_boundary_conditions,
+            std::map<int, std::string> cell_boundary_condition_map,
             std::string rule,
             std::string neighborhood,
             std::vector<int> initial_configuration,
@@ -49,6 +52,15 @@ class CellularAutomaton {
          * @return std::vector<int>
          */
         std::vector<int> get_last_snapshot();
+
+        /**
+         * get_cell_boundary_condition
+         *
+         * Returns the boundary condition for a given cell provided a index.
+         * 
+         * @return std::string
+         */
+        std::string get_cell_boundary_condition(int index);
 
         /**
          * append_snapshot
@@ -87,7 +99,8 @@ class CellularAutomaton {
         /**
          * get_neighbors
          *
-         * returns a vector of indices to neighbors of cell at index using the specified neighborhood.
+         * returns a vector of indices for locaions of neighboring cells using the specified neighborhood 
+         * for a given index or cell location.
          * 
          * @param  int index
          * @return neighbors as a vector of integers.
