@@ -32,7 +32,7 @@ class CellularAutomaton {
          * @param  int index
          * @return neighbors as a vector of integers.
          */
-        vector<int> VonNeumann_neighbors(int index);
+        vector<int> VonNeumann_neighbors(int & index);
 
         /**
          * Moore_neighbors
@@ -46,7 +46,7 @@ class CellularAutomaton {
          * @param  int index
          * @return neighbors as a vector of integers.
          */
-        vector<int> Moore_neighbors(int index);
+        vector<int> Moore_neighbors(int & index);
 
     public:
         /* CONSTRUCTORS */
