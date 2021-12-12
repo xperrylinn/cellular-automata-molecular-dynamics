@@ -16,8 +16,7 @@ CellularAutomaton::CellularAutomaton() {
 CellularAutomaton::CellularAutomaton(
     int n,
     int m,
-    std::string default_boundary_conditions,
-    std::map<int, std::string> cell_boundary_condition_map,
+    vector<string> boundary_condition_map,
     std::string rule,
     std::string neighborhood,
     std::vector<int> initial_configuration,
@@ -26,8 +25,7 @@ CellularAutomaton::CellularAutomaton(
     std::cout << "Hello World! From CellularAutomaton constructor!" << std::endl;
     this->n = n;
     this->m = m;
-    this->default_boundary_conditions = default_boundary_conditions;
-    this->cell_boundary_condition_map = cell_boundary_condition_map;
+    this->boundary_condition_map = boundary_condition_map;
     this->rule = rule;
     this->neighborhood = neighborhood;
     this->sequential = sequential;
