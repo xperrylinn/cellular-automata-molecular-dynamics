@@ -80,6 +80,7 @@ class CellularAutomaton {
          * 
          * @return void.
          * 
+         */
         void print_grid();
 
         /**

@@ -107,7 +107,8 @@ list<int> CellularAutomaton::get_neighbors(int index)  {
     if (this->neighborhood == "Moore") {  
         neighbors =  Moore_neighbors(index);
     }
-    list<int> list_neighbors=processing_neighbors(neighbors);
+    list<int> list_neighbors(neighbors.begin(), neighbors.end());
+    list_neighbors.remove(-1);
     return list_neighbors;
 }
 
