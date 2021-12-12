@@ -103,7 +103,8 @@ int main() {
     sa.state_transition_function();
     sa.print_grid();
 
-    sa.write_snap_shots_to_csv("./solute_dispersion.csv")
+    sa.write_snap_shots_to_csv("./solute_dispersion.csv");
+    
 
     return 0;
 }
