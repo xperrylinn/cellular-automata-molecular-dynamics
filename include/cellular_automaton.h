@@ -18,27 +18,6 @@ class CellularAutomaton {
         bool sequential;    // Sequential or parallel
         vector<int> initial_configuration;
 
-
-
-
-    public:
-        /* CONSTRUCTORS */
-        CellularAutomaton();    // Dummy for initial testing
-
-        CellularAutomaton(
-            int n,
-            int m,
-            vector<string> boundary_condition_map,
-            string rule,
-            string neighborhood,
-            vector<int> initial_configuration,
-            bool sequential=true
-        );
-
-        /* HELPER AND CONVINENCE FUNCTIONS */
-
-        /* NEIGHBOR FUNCTIONS */
-
         /**
          * VonNeumann_neighbors
          *
@@ -68,7 +47,8 @@ class CellularAutomaton {
         vector<int> Moore_neighbors(int index);
 
     public:
-        /* INPUT SERVICES MEHTODS */
+        /* INPUT SERVICES METHODS */
+        
         /* CONSTRUCTORS */
         CellularAutomaton(
             int n,
