@@ -8,7 +8,7 @@
 using namespace std;
 
 int main() {
-    std::cout << "Hello World! From tests.cxx" << std::endl;
+    cout << "Hello World! From tests.cxx" << endl;
     
     // Testing dummy constructor which will be removed soon
     CellularAutomaton ca = CellularAutomaton();
@@ -38,7 +38,7 @@ int main() {
     );
     
     // Test get last snap shot
-    std::vector<int> lsn = ca2.get_last_snapshot();
+    vector<int> lsn = ca2.get_last_snapshot();
 
     // Test print_grid()
     ca2.print_grid();
