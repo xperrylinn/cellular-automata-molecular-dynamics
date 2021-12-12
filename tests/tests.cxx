@@ -135,5 +135,7 @@ int main() {
     ca3.state_transition_function();
     ca3.print_grid();
 
+    ca3.write_snap_shots_to_csv("./testing_write_snap_shots_to_csv.csv");
+
     return 0;
 }

@@ -127,6 +127,7 @@ class CellularAutomaton {
          */
         void parity_rule(int index);
 
+        /* OUPUT SERVICES METHODS */
         /**
          * dispersion_rule
          *
@@ -135,6 +136,6 @@ class CellularAutomaton {
          * @param  ???.
          * @return ???.
          */
-        void dispersion_rule();
+        void write_snap_shots_to_csv(std::string filename);
 
 };
