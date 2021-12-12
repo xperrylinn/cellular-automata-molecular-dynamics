@@ -98,6 +98,7 @@ vector <int> neighbors;
     list<int> list_neighbors(neighbors.begin(), neighbors.end());
     list_neighbors.remove(-1);
     return list_neighbors;
+    }
 }
 
 void CellularAutomaton::majority_rule (int index) {
@@ -133,16 +134,6 @@ void CellularAutomaton::parity_rule (int index) {
 
 std::vector<int> CellularAutomaton::get_last_snapshot() {
     return this->snap_shots.back();
-}
-
-std::string CellularAutomaton::get_cell_boundary_condition(int index) {
-    std::map<int,std::string>::iterator it;
-    it = cell_boundary_condition_map.find(index);
-    if (it != cell_boundary_condition_map.end()) {
-        return this->cell_boundary_condition_map[index];
-    } else {
-        return this->default_boundary_conditions;
-    }
 }
 
 void CellularAutomaton::append_snapshot(std::vector<int> snap_shot) {

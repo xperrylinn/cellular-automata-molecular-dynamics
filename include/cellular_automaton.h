@@ -25,8 +25,7 @@ class CellularAutomaton {
         CellularAutomaton(
             int n,
             int m,
-            std::string default_boundary_conditions,
-            std::map<int, std::string> cell_boundary_condition_map,
+            vector<string> boundary_condition_map,
             std::string rule,
             std::string neighborhood,
             std::vector<int> initial_configuration,
@@ -51,15 +50,6 @@ class CellularAutomaton {
          * @return std::vector<int>
          */
         std::vector<int> get_last_snapshot();
-
-        /**
-         * get_cell_boundary_condition
-         *
-         * Returns the boundary condition for a given cell provided a index.
-         * 
-         * @return std::string
-         */
-        std::string get_cell_boundary_condition(int index);
 
         /**
          * append_snapshot
