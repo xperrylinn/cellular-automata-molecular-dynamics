@@ -9,13 +9,6 @@ using namespace std;
 
 int main() {
     cout << "Hello World! From tests.cxx" << endl;
-    
-    /*SECTION 1
-    *   TESTING INPUT SERVICES
-    */
-
-    // Testing dummy constructor which will be removed soon
-    CellularAutomaton ca = CellularAutomaton();
 
     // Test 1: Constructor
     vector<int> indices = {

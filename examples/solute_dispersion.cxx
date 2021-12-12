@@ -8,15 +8,10 @@ class SoluteDispersion : public CellularAutomaton {
         int max_solutes_per_cell;
 
     public:
-        SoluteDispersion() {
-            std::cout << "Hello World! From SolutionDispersion() constructor" << std::endl;
-        };
-
         SoluteDispersion(
             int n,
             int m,
             vector<string> boundary_condition_map,
-            std::string rule,
             std::string neighborhood,
             std::vector<int> initial_configuration,
             int max_solutes_per_cell,
@@ -25,7 +20,7 @@ class SoluteDispersion : public CellularAutomaton {
             n, 
             m, 
             boundary_condition_map, 
-            rule, 
+            "dispersion_rule",  // Place holder; not actually used 
             neighborhood, 
             initial_configuration, 
             sequential
@@ -34,10 +29,6 @@ class SoluteDispersion : public CellularAutomaton {
             std::cout << "Hello World! From SolutionDispersion(with args) constructor" << std::endl;
             this->max_solutes_per_cell = max_solutes_per_cell;
         };
-
-        void print_hello_world() {
-            std::cout << "Hello World! From solute_dipersion.cxx" << std::endl;
-        }
 
         void state_transition_function()     {
             for (int i=0; i < this->n * this->m; i++)   {
@@ -141,7 +132,6 @@ int main() {
         4,
         4,
         boundary_conds_map_for_ca3,
-        "parity",
         "VonNeumann",
         v3,
         5,

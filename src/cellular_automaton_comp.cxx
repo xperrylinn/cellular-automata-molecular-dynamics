@@ -125,7 +125,7 @@ void CellularAutomaton::majority_rule (int index) {
     }
     int majority = distance(hashtable.begin(), max_element(hashtable.begin(), hashtable.end()));
     this->current_state[index]=majority;
-}
+}   
 
 void CellularAutomaton::parity_rule (int index) {
     vector<int> previous_state= get_last_snapshot();
