@@ -1,10 +1,15 @@
-# cellular-automata-molecular-dynamics
-# for MSSE Chem 274B - Fall Semester
-# University of California, Berkeley
-# 
-# Creator:  Kevin Fong
-#
+# Cellular Automata
+
+### What is Cellular Automata?
+
 This is the main directory for the Cellular Atomaton object of TEAM ****, which contains of utilities, functions, and test cases. The directory structure is as follows:
+
+### Depdencies
+
+### Examples
+
+
+### Repository Struture
 
 PATH ROOT_DIR/
   Files:
@@ -19,3 +24,8 @@ PATH ROOT_DIR/
 	- src/      : this directory contains the source code with the functionality.
 	- tests/    : this directory contains test programs used to test the functionalities of the Cellular Atomaton.
 	- utils/    : this directory contains contains all the source files that implement utilities like input from command line, output to screen, and timers.
+
+### Collaborators
+- Kevin Fong
+- Xavier Linn
+- Xiange Wang

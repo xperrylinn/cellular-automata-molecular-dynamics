@@ -9,5 +9,6 @@ This directory contains source C++ program with a main function (that can be exe
 PATH ROOT_DIR/test
     Files:
   	- README: this file with a general description of the test subdirectory
-    - tests.cxx :  tests the methods of the Cellular Automaton object.
+    - tests_input_services.cxx: tests the core methods of the computational services belonging to the Cellular Automaton class
+    - test_computational_services.vxx: tests the core methods of the computational services belonging to the Cellular Automaton class
     - Makefile: contains commands that build the targets for the test files in this subdirectory.
