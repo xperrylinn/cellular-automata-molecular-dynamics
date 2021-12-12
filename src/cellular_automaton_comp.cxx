@@ -137,11 +137,11 @@ void CellularAutomaton::parity_rule (int index) {
     this->current_state[index]=parity;
 }
 
-std::vector<int> CellularAutomaton::get_last_snapshot() {
+vector<int> CellularAutomaton::get_last_snapshot() {
     return this->snap_shots.back();
 }
 
-void CellularAutomaton::append_snapshot(std::vector<int> snap_shot) {
+void CellularAutomaton::append_snapshot(vector<int> snap_shot) {
     this->snap_shots.push_back(snap_shot);
 }
 
