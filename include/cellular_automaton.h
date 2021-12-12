@@ -49,9 +49,8 @@ class CellularAutomaton {
         vector<int> Moore_neighbors(int & index);
 
     public:
+        /* INPUT SERVICES MEHTODS */
         /* CONSTRUCTORS */
-        CellularAutomaton();    // Dummy for initial testing
-
         CellularAutomaton(
             int n,
             int m,
@@ -62,8 +61,15 @@ class CellularAutomaton {
             bool sequential=true
         );
 
-        /* HELPER AND CONVINENCE FUNCTIONS */
+        void vaidate_user_input(
+            int n,
+            int m,
+            vector<string> boundary_condition_map,
+            string neighborhood,
+            vector<int> initial_configuration
+        );
 
+        /* HELPER AND CONVINENCE FUNCTIONS */
         /**
          * get_neighbors
          *
