@@ -8,14 +8,15 @@
 using namespace std;
 
 
-vector<int> CellularAutomaton::VonNeumann_neighbors(int & index)  {
+vector<int> CellularAutomaton::VonNeumann_neighbors(int index)  {
     vector <int> neighbors =  {index - this->m, index - 1, index, index + 1, index + this->m};
+    int unbound= -2*m;
     if (index < m)  {
         if (boundary_condition_map[0] == "periodic")  {
             neighbors[0]+= n*m;
         }
         else {
-            neighbors[0]=-1;
+            neighbors[0]=unbound;
         }
     }
     
@@ -24,7 +25,7 @@ vector<int> CellularAutomaton::VonNeumann_neighbors(int & index)  {
             neighbors[4]-= n*m;
         }
         else    {
-            neighbors[4]=-1;
+            neighbors[4]=unbound;
         }
     }
 
@@ -33,7 +34,7 @@ vector<int> CellularAutomaton::VonNeumann_neighbors(int & index)  {
             neighbors[1]+= m;
         }
         else    {
-            neighbors[1]=-1;
+            neighbors[1]=unbound;
         }
     }
 
@@ -42,21 +43,22 @@ vector<int> CellularAutomaton::VonNeumann_neighbors(int & index)  {
             neighbors[3]-= m;
         }
         else    {
-            neighbors[3]=-1;
+            neighbors[3]=unbound;
         }
     }
     return neighbors;
 }
 
-vector<int> CellularAutomaton::Moore_neighbors(int & index)  {
-    vector <int> neighbors =  {index - this->m - 1, index - this->m, index - this->m + 1, index - 1, index, index + 1, index + this->m - 1, index + this->m, index + this->m +1};        
+vector<int> CellularAutomaton::Moore_neighbors(int index)  {
+    vector <int> neighbors =  {index - this->m - 1, index - this->m, index - this->m + 1, index - 1, index, index + 1, index + this->m - 1, index + this->m, index + this->m +1};
+    int unbound= -2*m;        
     if (index < m)  {
         for (int i=0; i<3; i++) {
             if (boundary_condition_map[0] == "periodic")  {
                 neighbors[i]+= n*m;
             }
             else    {
-                neighbors[i]= -1;
+                neighbors[i]= unbound;
             }
         }
     }
@@ -66,27 +68,31 @@ vector<int> CellularAutomaton::Moore_neighbors(int & index)  {
                 neighbors[i]-= n*m;
             }
             else    {
-                neighbors[i]= -1;
+                neighbors[i]= unbound;
             }
         }
     }
     if (index % m == 0)  {
         for (int i=0; i<3; i++) {
-            if (boundary_condition_map[2] == "periodic")  {
-                neighbors[3*i]+= m;
-            }
-            else    {
-                neighbors[3*i]= -1;
+            if (neighbors[3*i]!=unbound) {
+                if (boundary_condition_map[2] == "periodic")  {
+                    neighbors[3*i]+= m;
+                }
+                else    {
+                    neighbors[3*i]= unbound;
+                }
             }
         }
     }
     else if (index % m == m-1)  {
         for (int i=0; i<3; i++) {
-            if (boundary_condition_map[3] == "periodic")  {
-                neighbors[3*i+2]-= m;
-            }
-            else    {
-                neighbors[3*i+2]-= m;
+            if (neighbors[3*i+2]!=unbound) {
+                if (boundary_condition_map[3] == "periodic")  {
+                    neighbors[3*i+2]-= m;
+                }
+                else    {
+                    neighbors[3*i+2]= unbound;
+                }
             }
         }
     }
@@ -102,7 +108,7 @@ list<int> CellularAutomaton::get_neighbors(int index)  {
         neighbors =  Moore_neighbors(index);
     }
     list<int> list_neighbors(neighbors.begin(), neighbors.end());
-    list_neighbors.remove(-1);
+    list_neighbors.remove(-2*m);
     return list_neighbors;
 }
 

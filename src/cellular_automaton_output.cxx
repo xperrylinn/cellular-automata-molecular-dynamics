@@ -12,7 +12,7 @@ using namespace std;
 void CellularAutomaton::print_grid(vector<int> state) {
     for (int i = 0; i < this->n; i++) {
         for (int j = 0; j < this-> m; j++) {
-            cout << state[i * this->n + j] << " ";
+            cout << state[i * this->n + j] << "\t";
         }
         cout << endl;
     }

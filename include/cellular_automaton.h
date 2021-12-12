@@ -18,8 +18,6 @@ class CellularAutomaton {
         bool sequential;    // Sequential or parallel
         vector<int> initial_configuration;
 
-        /* NEIGHBOR FUNCTIONS */
-
         /**
          * VonNeumann_neighbors
          *
@@ -32,7 +30,7 @@ class CellularAutomaton {
          * @param  int index
          * @return neighbors as a vector of integers.
          */
-        vector<int> VonNeumann_neighbors(int & index);
+        vector<int> VonNeumann_neighbors(int index);
 
         /**
          * Moore_neighbors
@@ -46,10 +44,11 @@ class CellularAutomaton {
          * @param  int index
          * @return neighbors as a vector of integers.
          */
-        vector<int> Moore_neighbors(int & index);
+        vector<int> Moore_neighbors(int index);
 
     public:
-        /* INPUT SERVICES MEHTODS */
+        /* INPUT SERVICES METHODS */
+        
         /* CONSTRUCTORS */
         CellularAutomaton(
             int n,
@@ -98,6 +97,14 @@ class CellularAutomaton {
          * @return vector<int>
          */
         vector<int> get_last_snapshot();
+
+        /*
+        */
+        void set_boundary_conditions(vector<string> boundary_condition_map);
+
+        /*
+        */
+        void set_neighborhood(string neighborhood);
 
         /* PRINTING TO COUT */
 
