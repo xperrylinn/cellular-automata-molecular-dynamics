@@ -49,14 +49,17 @@ void CellularAutomaton::vaidate_user_input(
 ) {
     // Check that n and m are greator than zero
     if (n <= 0 && m <= 0) {
+        std::cout << "n amd m, grid dimension parameters must be greater than zero" << std::endl;
         throw "n amd m, grid dimension parameters must be greater than zero";
     }
     // Check that n * m is equal to the initial_configuration
     if (n * m != initial_configuration.size()) {
+        std::cout << "n * m must equal to the size of the initial_configuration" << std::endl;
         throw "n * m must equal to the size of the initial_configuration";
     }
     // Check the bounary conditions map is length for - one boundary condition for each of the four side of the grid
     if (boundary_condition_map.size() != 4) {
+        std::cout << "You must specify exactly one boundary condition type for each or the four sides of the grid" << std::endl;
         throw "You must specify exactly one boundary condition type for each or the four sides of the grid";
     }
     // Check that the boundary conditions in the boundary condition map are valid
@@ -69,6 +72,7 @@ void CellularAutomaton::vaidate_user_input(
             curr_boundary_condition == "none")
             )
         {
+            std::cout << "Each boundary condition must be one of the following values: \"perodic\", \"fixed\", \"cutoff\", \"none\"" << std::endl;
             throw "Each boundary condition must be one of the following values: \"perodic\", \"fixed\", \"cutoff\", \"none\"";
         }
     }
@@ -80,8 +84,8 @@ void CellularAutomaton::vaidate_user_input(
         (boundary_condition_map[2] != "periodic" && boundary_condition_map[3] == "periodic")
     ) 
     {
+        std::cout << "Periodic boundary on conditions on one side of the grid must have matching periodic boundary conditions on the oppposite side" << std::endl;
         throw "Periodic boundary on conditions on one side of the grid must have matching periodic boundary conditions on the oppposite side";
     }
 
-    // Check that the rule is one fo the valid rules?
 }

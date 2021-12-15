@@ -126,7 +126,7 @@ int main() {
         0, 0, 0, 0,
     };
 
-    vector<string> boundary_conds_map_for_ca3 = {"cutoff","cutoff", "period", "period"};
+    vector<string> boundary_conds_map_for_ca3 = {"cutoff", "cutoff", "periodic", "periodic"};
 
     SoluteDispersion sa = SoluteDispersion(
         4,

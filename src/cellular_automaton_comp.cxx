@@ -168,10 +168,3 @@ void CellularAutomaton::n_transitions(int n)     {
         state_transition_function();
     }
 };
-
-
-
-// ostream& operator<<(ostream& os, const CellularAutomaton& ca) {
-//     cout << "Hello World! From operator<< of CellularAutomaton" << endl;
-//     return os;
-// }

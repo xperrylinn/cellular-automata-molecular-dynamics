@@ -140,7 +140,6 @@ int main() {
     };
 
 
-
     vector<string> boundary_conds_map_for_ca3 = {"cutoff","cutoff", "periodic", "periodic"};
 
     CellularAutomaton ca3 = CellularAutomaton(
