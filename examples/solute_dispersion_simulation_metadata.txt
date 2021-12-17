@@ -1,4 +1,0 @@
-n, number of rows: 30
-m, number of columns: 30
-number of snapshots: 10002
-max total number of states: 10002

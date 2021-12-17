@@ -141,8 +141,8 @@ int main() {
     sa.n_transitions(10000);
     //sa.print_all_states();
 
-    sa.write_snap_shots_to_csv("./solute_dispersion.csv");
-    sa.write_simulation_metadata_to_json("./solute_dispersion_simulation_metadata.json");
+    sa.write_snap_shots_to_csv("examples/data/solute_dispersion1.csv");
+    sa.write_simulation_metadata_to_json("examples/data/solute_dispersion_simulation_metadata1.json");
 
     vector<string> contain = {"cutoff", "cutoff", "cutoff", "cutoff"};
 
@@ -157,8 +157,8 @@ int main() {
         true
     );
     sa2.n_transitions(10000);
-    sa2.write_snap_shots_to_csv("./solute_dispersion2.csv");
-    sa2.write_simulation_metadata_to_json("./solute_dispersion_simulation_metadata2.json");
+    sa2.write_snap_shots_to_csv("examples/data/solute_dispersion2.csv");
+    sa2.write_simulation_metadata_to_json("examples/data/solute_dispersion_simulation_metadata2.json");
 
 
     return 0;
