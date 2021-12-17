@@ -61,15 +61,16 @@ void CellularAutomaton::write_snap_shots_to_csv(std::string filename) {
     csv.close();
 }
 
-void CellularAutomaton::write_simulation_metadata_to_txt(std::string filename) {
+void CellularAutomaton::write_simulation_metadata_to_json(std::string filename) {
     // Create an output filestream object
     std::ofstream text_file(filename);
     
     // Write meta data to file
-    text_file << "n, number of rows: " << this->n << std::endl;
-    text_file << "m, number of columns: " << this->m << std::endl;
-    text_file << "number of snapshots: " << this->snap_shots.size() << std::endl;
-    text_file << "max total number of states: " << this->snap_shots.size() << std::endl;
+    text_file << "{"<<endl;
+    text_file << "\"n, number of rows\": \"" << this->n << "\","<< std::endl;
+    text_file << "\"m, number of columns\": \"" << this->m << "\","<< std::endl;
+    text_file << "\"number of snapshots\": \"" << this->snap_shots.size() << "\","<< std::endl;
+    text_file << "\"max number of states\": \"" << this->max << "\""<< std::endl<< "}"<<endl;
 
     // Close the txt file
     text_file.close();
