@@ -25,7 +25,7 @@ This repository is structure using a standard Makefile structure.
 
 - Root directory: cellular-automata-molecular-dynamics
 	- Subdirectories:
-		- README.md: this file with a general description of the top directory
+		- README.md: this file, documentation on library functionality and a conceptual introduction to cellular automata
 		- Makefile: makefile to generate all executables and libraries also commands clean all the subdirectories. See Makefile for possible 'make commands'.
 		- src: this directory contains the source code with the functionality.
 		- include: this directory contains the APIs in the form of .h include files
@@ -33,18 +33,6 @@ This repository is structure using a standard Makefile structure.
 		- tests: this directory contains test programs used to test the functionalities of the Cellular Atomaton.
 		- bin: this directory contains all the executable program
 
-PATH ROOT_DIR/
-  Files:
-	- README: this file with a general description of the top directory
-	- Makefile: a makefile that can generate all executables and libraries
-        
-
-  SUBDIRECTORIES:
-	- bin/      : this directory contains all the executable program
-	- lib/      : this directory contains all the object files (.o) and libraries (.a)
-	- include/  : this directory contains the APIs in the form of .h include files
-	- src/      : this directory contains the source code with the functionality.
-	- tests/    : this directory contains test programs used to test the functionalities of the Cellular Atomaton.
 
 ### Collaborators
 - Kevin Fong
