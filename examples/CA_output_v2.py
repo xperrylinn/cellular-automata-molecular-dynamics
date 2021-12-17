@@ -89,7 +89,7 @@ def creatMenu(window, buttons, lock):
         print(f"data file set to {cellMove.data_file}")
 
     imgmenu.add_command(label='random', command=functools.partial(change_data, file_name='./data/random.csv', size=[4,4], max_val=6))
-    imgmenu.add_command(label='preset', command=functools.partial(change_data, file_name='./data/data.csv', size=[4,4], max_val=2))
+    imgmenu.add_command(label='preset', command=functools.partial(change_data, file_name='./data/solute_dispersion.csv.csv', size=[4,4], max_val=2))
     imgmenu.add_command(label='solute_dispersion1', command=functools.partial(change_data, \
         file_name='./data/solute_dispersion1.csv', size=[30,20], max_val=100))
     imgmenu.add_command(label='solute_dispersion2', command=functools.partial(change_data, \
