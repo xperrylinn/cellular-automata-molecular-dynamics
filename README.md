@@ -8,7 +8,7 @@ __Cellular automata__ refers to a class of simulations based on a system of cell
 ![Neighborhood types](./neighborhood_types.png)
 The rule applied to each cell in a state transition function contains the domain specific knowledge of how a cells state should be updated given the states of the cells in its neighborhood. For example, one common rule is the __majority rule__ which is a rule where a cell will change its state to the mode of its neighboring cell states.
 
-CA provide a powerful tool for modeling complex systems because they the 
+CA provide a powerful tool for modeling complex systems because it allows the modeling of nonlinear spatio-temporal dynamics as well as the ability to solve problemsn in a non linear interactions between neighbors cells as well as the ability to 
 
 
 ### Depdencies
@@ -17,6 +17,7 @@ CA provide a powerful tool for modeling complex systems because they the
 - Makefile
 
 ### Examples
+
 
 
 ## Repository Struture

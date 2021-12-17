@@ -199,4 +199,6 @@ class CellularAutomaton {
          */
         void write_snap_shots_to_csv(string filename);
 
+        void write_simulation_metadata_to_txt(std::string filename);
+
 };
