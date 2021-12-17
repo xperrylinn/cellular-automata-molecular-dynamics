@@ -159,6 +159,9 @@ void CellularAutomaton::state_transition_function()     {
         if (rule=="parity")   {
             parity_rule(i);
         }
+        if (current_state[i]>this->max) {
+            max = current_state[i];
+        }
     }
     append_snapshot(current_state);
 };

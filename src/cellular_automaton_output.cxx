@@ -69,7 +69,7 @@ void CellularAutomaton::write_simulation_metadata_to_txt(std::string filename) {
     text_file << "n, number of rows: " << this->n << std::endl;
     text_file << "m, number of columns: " << this->m << std::endl;
     text_file << "number of snapshots: " << this->snap_shots.size() << std::endl;
-    text_file << "max total number of states: " << this->snap_shots.size() << std::endl;
+    text_file << "max number of states: " << this->max << std::endl;
 
     // Close the txt file
     text_file.close();

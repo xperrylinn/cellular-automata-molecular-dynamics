@@ -8,8 +8,8 @@ using namespace std;
 
 class CellularAutomaton {
     protected:
-        int n;  // Grid lenth
-        int m;  // Grid width
+        int n;  // Number of Rows
+        int m;  // Number of Columns
         vector<int> current_state;
         vector<vector<int> > snap_shots;          // Vector of states at timesteps as Cellular Automaton transitions.
         vector<string> boundary_condition_map;    // Vector defines boundary condition type for each side of the CA {top, bottom, left, right}
@@ -17,6 +17,7 @@ class CellularAutomaton {
         string neighborhood;   // Von Neumann or Moore Neighborhood
         bool sequential;    // Sequential or parallel
         vector<int> initial_configuration;
+        int max; // maximum value to a state recorded
 
         /**
          * VonNeumann_neighbors

@@ -137,12 +137,29 @@ int main() {
     );
 
     sa.state_transition_function();
-    sa.print_current();
+    //sa.print_current();
     sa.n_transitions(10000);
-    sa.print_all_states();
+    //sa.print_all_states();
 
     sa.write_snap_shots_to_csv("./solute_dispersion.csv");
     sa.write_simulation_metadata_to_txt("./solute_dispersion_simulation_metadata.txt");
+
+    vector<string> contain = {"cutoff", "cutoff", "cutoff", "cutoff"};
+
+    vector<int> v2(625, 0);
+    v2[313]=200;
+    SoluteDispersion sa2 = SoluteDispersion(
+        25,
+        25,
+        contain,
+        "VonNeumann",
+        v2,
+        true
+    );
+    sa2.n_transitions(10000);
+    sa2.write_snap_shots_to_csv("./solute_dispersion2.csv");
+    sa2.write_simulation_metadata_to_txt("./solute_dispersion_simulation_metadata2.txt");
+
 
     return 0;
 }

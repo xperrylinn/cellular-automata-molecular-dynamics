@@ -29,6 +29,12 @@ CellularAutomaton::CellularAutomaton(
     this->neighborhood = neighborhood;
     this->sequential = sequential;
     this->current_state=initial_configuration;
+    int max=0;
+    for (auto i:current_state)  {
+        if (i>max)  {
+            this->max=i;
+        }
+    }
     append_snapshot(initial_configuration);
 }
 
