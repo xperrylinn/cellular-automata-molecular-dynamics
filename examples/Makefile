@@ -11,10 +11,11 @@ INC_DIR = ../include
 
 # The directory where all object files are going to moved afer creation
 LIB_DIR     = ../lib
-BIN_DIR     = ../bin
+BIN_DIR     = bin
 
 # The next line contains the list of utility objects created by this Makefile.
 EXECUTABLES = solute_dispersion
+
 
 solute_dispersion: $(INC_DIR)/cellular_automaton.h 
 	$(CXX) $(CXXFLAGS) solute_dispersion solute_dispersion.cxx -I$(INC_DIR) $(LIB_DIR)/cellular_automaton.a
