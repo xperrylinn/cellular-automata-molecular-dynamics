@@ -23,14 +23,15 @@ CA provide a powerful tool for modeling complex systems because they the
 
 This repository is structure using a standard Makefile structure.
 
-- cellular-automata-molecular-dynamics
-	- README.md: this file with a general description of the top directory
-	- Makefile: makefile to generate all executables and libraries also commands clean all the subdirectories. See Makefile for possible 'make commands'.
-	- src: this directory contains the source code with the functionality.
-	- include: this directory contains the APIs in the form of .h include files
-	- lib: object file produced from making the src direcotry
-	- tests: this directory contains test programs used to test the functionalities of the Cellular Atomaton.
-	- bin: this directory contains all the executable program
+- Root directory: cellular-automata-molecular-dynamics
+	- Subdirectories:
+		- README.md: this file with a general description of the top directory
+		- Makefile: makefile to generate all executables and libraries also commands clean all the subdirectories. See Makefile for possible 'make commands'.
+		- src: this directory contains the source code with the functionality.
+		- include: this directory contains the APIs in the form of .h include files
+		- lib: object file produced from making the src direcotry
+		- tests: this directory contains test programs used to test the functionalities of the Cellular Atomaton.
+		- bin: this directory contains all the executable program
 
 PATH ROOT_DIR/
   Files:
