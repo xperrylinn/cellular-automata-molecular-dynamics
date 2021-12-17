@@ -19,14 +19,25 @@ This repository offers a C++ class, `CellularAutomaton` (located in `lib/cellula
 - input services (located in `src/cellular_automaton_input.cxx`): contains constructors for initializing `CellularAutomaton` objects as well as setter methods for key class attributes and a helper method to validate user inputs.
 - computationl services (located in `src/cellular_automaton_input.cxx`): contains the core methods for running a simulation. The two main methods in this file are the `state_transition_function` and `get_neighbors` a method for comptuing the valid neighboring cells depending on the neighborhood type and boundary conditions.
 - output services (located in `src/cellular_automaton_input.cxx`): contains methods for printing the grid to standard output as two methods for writing data to fil. The two methods for writing to file are a method for writing each snap shot of the simulation to a CSV capturing the state information of grid in one dimensional form and a complementary method for writing simulation metadata to a JSON file.
+The class offers the following list of base functionality:
+- Rules:
+	- Majority rule
+	- Parity rule
+- Boundary conditions:
+	- Periodic
+	- Fixed
+	- Cutoff
+	- None
+To add more general functionlaity to this class feel free to open a pull request to introduce new features with relevant unit tests placed test in the `tests` directory. Another option for increasing functionality of the `CellularAutomaton` class, is to use class ihertiance as demonstrated in the examples section below. This is particularly useful if you want to build a class of CA simulations unique to a domain like __molecular dyanmics__ (classical mechanics applied to molecular systems).
+
+### Examples
+
+For an example of how to extend the base functionality of the `CellularAutomaton` class, please see `examples/solute_dispersion.cxx`. In this example we create a `SoluteDipsersion` class to model the brownian motion of solutes in a grid. This custom class introduces new a rule for update a cells state based on brownian motion for each of the solutes in that cell (the number of the solutes is equal to the integer state value of a cell).
 
 ### Depdencies
 
 - C++11
 - Makefile
-
-### Examples
-
 
 
 ## Repository Struture
