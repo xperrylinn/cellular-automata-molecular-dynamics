@@ -9,11 +9,10 @@ import tkinter as tk
 from random import sample
 
 
-
-data_file = 'data3.csv'
+data_file = './data/random.csv'
 
 def creatButtons(window, col_num, row_num):  
-    length = 20
+    length = 15
     buttons = []
 
     def setColor(i, j):
@@ -58,7 +57,6 @@ def creatMenu(window, buttons, lock):
                     if buttons[x][y]['bg'] == 'black':
                         f.write('[' + str(x) + ',' + str(y) + '],')
 
-
     filemenu.add_command(label='start', command=start)
     filemenu.add_command(label='stop', command=pause)
     filemenu.add_command(label='restart', command=reset)
@@ -85,20 +83,19 @@ def creatMenu(window, buttons, lock):
 
     def change_data(file_name, size, max_val):
         # change data
-        # lock.acquire()
         cellMove.data_file = file_name
         cellMove.size = size
         cellMove.max_val = max_val
         print(f"data file set to {cellMove.data_file}")
-        # lock.release()
 
-    imgmenu.add_command(label='random', command=functools.partial(change_data, file_name='data3.csv', size=[4,4], max_val=6))
-    imgmenu.add_command(label='preset1', command=functools.partial(change_data, file_name='data.csv', size=[4,4], max_val=2))
-    imgmenu.add_command(label='solute_dispersion1', command=functools.partial(change_data, file_name='cellular-automata-molecular-dynamics-main/examples/data/solute_dispersion1.csv', size=[30,20], max_val=100))
-    imgmenu.add_command(label='solute_dispersion2', command=functools.partial(change_data, file_name='cellular-automata-molecular-dynamics-main/examples/data/solute_dispersion2.csv', size=[25,25], max_val=45))
+    imgmenu.add_command(label='random', command=functools.partial(change_data, file_name='./data/random.csv', size=[4,4], max_val=6))
+    imgmenu.add_command(label='preset', command=functools.partial(change_data, file_name='./data/data.csv', size=[4,4], max_val=2))
+    imgmenu.add_command(label='solute_dispersion1', command=functools.partial(change_data, \
+        file_name='./data/solute_dispersion1.csv', size=[30,20], max_val=100))
+    imgmenu.add_command(label='solute_dispersion2', command=functools.partial(change_data, \
+        file_name='./data/solute_dispersion2.csv', size=[25,25], max_val=45))
 
-
-    def instruction(): 
+    def instruction():
         tkinter.messagebox.showinfo(title='CA', message="input ")
 
     menubar.add_command(label='description', command=instruction)
@@ -109,12 +106,13 @@ def calc_pos(data_size, board_size, index):
     data_row, data_col = data_size
     max_row, max_col = board_size
 
-    # calculate row position and shift toward center
-    row = index % data_row - math.floor(data_row/2) + math.floor(max_row/2)
-    row = row if row < max_row and row > 0 else False
+    # calculate row/col position and shift data center toward board center
 
-    col = index // data_col - math.floor(data_col/2) + math.floor(max_col/2)
-    col = col if col < max_col and col > 0 else False
+    row = index // data_row - math.floor((data_row - max_row)/2)
+    row = row if row < max_row and row >= 0 else False
+
+    col = index % data_col - math.floor((data_col - max_col)/2)
+    col = col if col < max_col and col >= 0 else False
 
     return row, col
 
@@ -127,29 +125,29 @@ def function_disp(data, buttons, size, max_val):
     data_row, data_col = size
     board_row = len(buttons)
     board_col = len(buttons[0])
-    # print(row)
-
 
     for i in range(len(data)):
         row, col = calc_pos(size, [board_row, board_col], i)
 
-        if row == False: continue
-        if col == False: continue
+        print(f'data index={i} row={row}, col={col}, value={data[i]}, max_val={max_val}, ', end='')
 
-
-        print(f'data index={i} row={row}, col={col}, value={data[i]}, max_val={max_val}')
-
+        # row/col is False means out of bound
+        if row is False: continue
+        if col is False: continue
 
         if int(data[i]) <= 100:
-            # normalize to between 1 and 99
+            # normalize to between 1 and 99, tk offers grey1 to grey99
             val = int(( 98 * (max_val - int(data[i])) / max_val ) + 1)
 
             # color the buttons
             buttons[row][col]['bg'] = 'grey' + str(val)
+            print(f"Color={buttons[row][col]['bg']}")
 
+        # if data[i] == 999 trigger random function
         elif data[i] == '999':
             # for each position, sample one color
             buttons[row][col]['bg'] = sample(['grey1', 'grey20', 'grey40', 'grey60', 'grey80', 'grey99'], 1)[0]
+            print('')
     return
 
 def clear_board(buttons):
@@ -161,7 +159,7 @@ def clear_board(buttons):
 class cellMove():
     speed = 1
     stop = False
-    data_file = "data3.csv"
+    data_file = "./data/random.csv"
     size = [4,4]
     max_val = 4
 
@@ -183,7 +181,6 @@ class cellMove():
                 next(f)
                 reader = csv.reader(f)
                 self.data = list(reader)
-
 
             data_row_num = 0
             for data_row in self.data:
@@ -209,12 +206,11 @@ class cellMove():
             print('Done')
 
 
-
 if __name__ == '__main__':
     window = tk.Tk() 
     window.title('CA_TEST')
     window.geometry('700x700')
-    buttons = creatButtons(window, 25, 25)
+    buttons = creatButtons(window, 25, 30) # col, row
     lock = threading.RLock() 
     lock.acquire()
     cellMove = cellMove(buttons)
