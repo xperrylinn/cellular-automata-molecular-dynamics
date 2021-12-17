@@ -4,9 +4,6 @@
 #include<random>
 
 class SoluteDispersion : public CellularAutomaton {
-    private:
-        int max_solutes_per_cell;
-
     public:
         SoluteDispersion(
             int n,
@@ -14,7 +11,6 @@ class SoluteDispersion : public CellularAutomaton {
             vector<string> boundary_condition_map,
             std::string neighborhood,
             std::vector<int> initial_configuration,
-            int max_solutes_per_cell,
             bool sequential=true
         ): CellularAutomaton(
             n, 
@@ -27,7 +23,6 @@ class SoluteDispersion : public CellularAutomaton {
             ) 
         {
             std::cout << "Hello World! From SolutionDispersion(with args) constructor" << std::endl;
-            this->max_solutes_per_cell = max_solutes_per_cell;
         };
 
         void state_transition_function()     {
@@ -119,32 +114,35 @@ class SoluteDispersion : public CellularAutomaton {
 int main() {
     std::cout << "Hello World! solute_dispersion.cxx" << std::endl;
 
-    vector<int> v3 = {
-        0, 0, 0, 0,
-        0, 1, 1, 0,
-        0, 1, 1, 0,
-        0, 0, 0, 0,
-    };
+    int n = 30;
+    int m = 20;
+    
+    vector<int> v(n * m, 0);
 
-    vector<string> boundary_conds_map_for_ca3 = {"cutoff", "cutoff", "periodic", "periodic"};
+    // Place solutes all along the top row
+    int initial_solutes_count_per_cell = 100;
+    for (int i = 0; i < m; i++) {
+        v[i] = initial_solutes_count_per_cell;
+    }
+
+    vector<string> boundary_conds_map_for_sa = {"cutoff", "cutoff", "periodic", "periodic"};
 
     SoluteDispersion sa = SoluteDispersion(
-        4,
-        4,
-        boundary_conds_map_for_ca3,
+        n,
+        m,
+        boundary_conds_map_for_sa,
         "VonNeumann",
-        v3,
-        5,
+        v,
         true
     );
 
     sa.state_transition_function();
     sa.print_current();
-    sa.n_transitions(20);
+    sa.n_transitions(10000);
     sa.print_all_states();
 
     sa.write_snap_shots_to_csv("./solute_dispersion.csv");
-    
+    sa.write_simulation_metadata_to_txt("./solute_dispersion_simulation_metadata.txt");
 
     return 0;
 }
