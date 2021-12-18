@@ -11,6 +11,8 @@ from random import sample
 
 data_file = './data/random.csv'
 
+
+## This is the function for user can click for the button and show the next state for neighbors around specific cell 
 def creatButtons(window, col_num, row_num):  
     length = 15
     buttons = []
@@ -26,7 +28,7 @@ def creatButtons(window, col_num, row_num):
             buttons[i][j].grid(row=i, column=j, )
     return buttons
 
-
+## This create the Top left Menu bar for user to control for this program
 def creatMenu(window, buttons, lock):
     menubar = tk.Menu(window)
     filemenu = tk.Menu(menubar, tearoff=0)
@@ -69,6 +71,9 @@ def creatMenu(window, buttons, lock):
     speedmenu = tk.Menu()
     setmenu.add_cascade(label='speed_of_moving', menu=speedmenu)
 
+   
+## This is the speed control function, for those small matrixs, could use lower speed to see the simulation, for those large-size matrix,
+## we can speed-up to see the full simulation quickly.
     def setSpeed(newspeed):
         cellMove.speed = newspeed
 
@@ -81,6 +86,9 @@ def creatMenu(window, buttons, lock):
     imgmenu = tk.Menu()
     setmenu.add_cascade(label='different random inputs', menu=imgmenu)
 
+   
+   
+ ## This is the function for user input there desired solute_dispersion csv from computational steps.
     def change_data(file_name, size, max_val):
         # change data
         cellMove.data_file = file_name
@@ -102,6 +110,7 @@ def creatMenu(window, buttons, lock):
     window.config(menu=menubar)
 
 
+## This is the function for shift some dataset to the center of board. 
 def calc_pos(data_size, board_size, index):
     data_row, data_col = data_size
     max_row, max_col = board_size
@@ -116,6 +125,7 @@ def calc_pos(data_size, board_size, index):
 
     return row, col
 
+## This is the function for display the data by continues-color
 def function_disp(data, buttons, size, max_val):
     """
     data: data from csv
@@ -150,12 +160,14 @@ def function_disp(data, buttons, size, max_val):
             print('')
     return
 
+
+## This is the function that initialize the board
 def clear_board(buttons):
     for i in buttons:
         for j in i:
             j['bg'] = 'white'
 
-
+## This is the function that testing for each movement is correct
 class cellMove():
     speed = 1
     stop = False
@@ -205,7 +217,7 @@ class cellMove():
 
             print('Done')
 
-
+## Main function
 if __name__ == '__main__':
     window = tk.Tk() 
     window.title('CA_TEST')
@@ -219,4 +231,3 @@ if __name__ == '__main__':
     dataThread.start()  
     window.mainloop()  
     # winThread.run()
-    
