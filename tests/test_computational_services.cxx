@@ -8,7 +8,7 @@
 using namespace std;
 
 int main() {
-    cout << "Hello World! From tests.cxx" << endl;
+    cout << "This is the test suite for the computation functions of the CellularAutomaton" << endl;
 
     // Test 1: Constructor
     vector<int> indices = {
@@ -21,9 +21,9 @@ int main() {
     vector<string> periodic_bounds = {"periodic", "periodic", "periodic", "periodic"};
 
     cout<<"Test set 1: Constructing a Cellular Automaton and print_current()"<<endl;
-    cout<<endl<<"Dimensions: 4x4"<<"Boundary Condition: Periodic"<<endl <<"Neighboorhood: Von Neumann"<<endl;
+    cout<<endl<<"Dimensions: 4x4"<<endl<<"Boundary Condition: Periodic"<<endl <<"Neighboorhood: Von Neumann"<<endl;
 
-    CellularAutomaton ca2 = CellularAutomaton(
+    CellularAutomaton ca_index = CellularAutomaton(
         4,
         4,
         periodic_bounds,
@@ -34,19 +34,19 @@ int main() {
     );
     
     // Test get last snap shot
-    cout<<endl<<"Initial configuration is stored as a vector<int> as first saved state. This can be called by get_last_snapshot()"<<endl;
-    vector<int> lsn = ca2.get_last_snapshot();
+    cout<<endl<<"Initial configuration is stored as a vector<int> as first saved state. This can be called by get_last_snapshot()."<<endl;
+    vector<int> lsn = ca_index.get_last_snapshot();
     for (auto it:lsn)   {
         cout<<it<<" ";
     }
 
     // Test print_grid()
-    cout<<endl<<endl<<"Vector<int> can be printed in formated rows by print_grid()"<<endl;
-    ca2.print_grid(lsn);
+    cout<<endl<<endl<<"Vector<int> can be printed in formated rows by print_grid()."<<endl;
+    ca_index.print_grid(lsn);
 
     // Test print_current()
     cout<<endl<<endl<<"print_current() uses both get_last_snapshot() and print_grid() to print the current state:"<<endl;
-    ca2.print_current();
+    ca_index.print_current();
 
     /*SECTION 2
     *   TESTING GET_NEIGHBORS
@@ -55,18 +55,20 @@ int main() {
    cout<<endl<<"Test set 2: Testing get_neighbors()"<<endl;
 
     // Test get_neighbors()
+
+    cout<<endl<<"get_neighbors() returns a vector of ints as neighbors"<<endl<<"Using the matrix of indicies in the previous test, testing calls to get_neighbors()"<<endl;
     cout<<endl<<"Neighbors to Cell 5:"<<endl;
-    for (auto neighbor:ca2.get_neighbors(5))    {
+    for (auto neighbor:ca_index.get_neighbors(5))    {
         cout<<neighbor<<" ";
     }
     cout<<endl;
     // Test get_neighbors(), periodic
-    cout<<"Testing for periodic bound"<<endl<<"Neighbors to Cell 4:"<<endl;
-    for (auto neighbor:ca2.get_neighbors(4))    {
+    cout<<endl<<"Testing for periodic bound"<<endl<<"Neighbors to Cell 4:"<<endl;
+    for (auto neighbor:ca_index.get_neighbors(4))    {
         cout<<neighbor<<" ";
     }
     cout<<endl<<"Neighbors to Cell 0:"<<endl;
-    for (auto neighbor:ca2.get_neighbors(0))    {
+    for (auto neighbor:ca_index.get_neighbors(0))    {
         cout<<neighbor<<" ";
     }
     cout<<endl;
@@ -74,89 +76,106 @@ int main() {
     // Test set_boundary_condition
     cout<<endl<<"Changing boundary conditions: Cutoff for bottom, no bounds for other sides..."<<endl;
     vector<string> single_wall = {"none", "cutoff", "none", "none"};
-    ca2.set_boundary_conditions(single_wall);
+    ca_index.set_boundary_conditions(single_wall);
 
     // Test get_neighbors(), cutoff, fixed
     cout<<endl<<"Testing for cutoff,no bounds. These bounds are interpreted the same in get_neighbors()"<<endl<<"Neighbors to Cell 1:"<<endl;
-    for (auto neighbor:ca2.get_neighbors(1))    {
+    for (auto neighbor:ca_index.get_neighbors(1))    {
         cout<<neighbor<<" ";
     }
     cout<<endl<<"Neighbors to Cell 12:"<<endl;
-    for (auto neighbor:ca2.get_neighbors(12))    {
+    for (auto neighbor:ca_index.get_neighbors(12))    {
         cout<<neighbor<<" ";
     }
     cout<<endl;
 
     // Test set_neighborhood()
     cout<<endl<<"Changing neighborhood consideration: Moore"<<endl;
-    ca2.set_neighborhood("Moore");
+    ca_index.set_neighborhood("Moore");
 
     cout<<"Changing boundary conditions: Cutoff for bottom, periodic on left and right sides..."<<endl;
     vector<string> periodic_wall = {"none", "cutoff", "periodic", "periodic"};
-    ca2.set_boundary_conditions(periodic_wall);
+    ca_index.set_boundary_conditions(periodic_wall);
 
     cout<<endl<<"Neighbors to Cell 0:"<<endl;
-    for (auto neighbor:ca2.get_neighbors(0))    {
+    for (auto neighbor:ca_index.get_neighbors(0))    {
         cout<<neighbor<<" ";
     }
     cout<<endl<<"Neighbors to Cell 7:"<<endl;
-    for (auto neighbor:ca2.get_neighbors(7))    {
+    for (auto neighbor:ca_index.get_neighbors(7))    {
         cout<<neighbor<<" ";
     }
     cout<<endl<<"Neighbors to Cell 15:"<<endl;
-    for (auto neighbor:ca2.get_neighbors(15))    {
+    for (auto neighbor:ca_index.get_neighbors(15))    {
         cout<<neighbor<<" ";
     }
     cout<<endl;
 
     /*SECTION 3
-    *   TESTING RULES
+    *   TESTING RULES AND STATE TRANSITION FUNCTIONS
     */
 
-    cout<<"Test set 3: Testing majority_rule() and parity rule()"<<endl;
+    cout<<endl<<"Test set 3: Testing majority_rule() and parity rule() and state transition functions"<<endl;
     cout<<"Constructing a Cellular Automaton..."<<endl;
-    cout<<endl<<"Dimensions: 3x3"<<"Boundary Condition: Periodic"<<endl <<"Rule: Majority Rule"<<endl<<"Neighboorhood: Von Neumann"<<endl;
+    cout<<endl<<"Dimensions: 4x4"<<"Boundary Condition: Periodic"<<endl <<"Rule: Majority Rule"<<endl<<"Neighboorhood: Von Neumann"<<endl;
 
     vector<int> binary = {
         1, 1, 1, 0,
-        1, 1, 1, 0,
+        1, 1, 0, 0,
         0, 1, 1, 0,
-        0, 0, 0, 0,
+        0, 0, 1, 0,
     };
 
-    // Test Majority Rule()
-    ca2.majority_rule(3);
-
-    // Test state_transition_function()
-    ca2.state_transition_function();
-    ca2.print_current();
-
-    // Test parity_rule()
-    vector<int> v3 = {
-        0, 0, 0, 0,
-        0, 1, 1, 0,
-        0, 1, 1, 0,
-        0, 0, 0, 0,
-    };
-
-
-    vector<string> boundary_conds_map_for_ca3 = {"cutoff","cutoff", "periodic", "periodic"};
-
-    CellularAutomaton ca3 = CellularAutomaton(
+    CellularAutomaton ca_majority = CellularAutomaton(
         4,
         4,
-        boundary_conds_map_for_ca3,
-        "parity",
+        periodic_bounds,
+        "majority",
         "VonNeumann",
-        v3,
+        binary,
         true
     );
+    ca_majority.print_current();
+    cout<<"Performing Majority Rule at cell 6 using majority_rule()..."<<endl;
+    // Test Majority Rule()
+    ca_majority.majority_rule(6);
+    ca_majority.print_current();
 
-    ca3.print_current();
-    ca3.state_transition_function();
-    ca3.print_current();
+    cout<<"Performing State Transition function using majority rule using state_transition_function()..."<<endl;
+    // Test state_transition_function()
+    ca_majority.state_transition_function();
+    ca_majority.print_current();
 
-    ca3.write_snap_shots_to_csv("./testing_write_snap_shots_to_csv.csv");
+    cout<<endl<<"Constructing a Cellular Automaton..."<<endl;
+    cout<<endl<<"Dimensions: 4x4"<<"Boundary Condition: Periodic"<<endl <<"Rule: Parity Rule"<<endl<<"Neighboorhood: Von Neumann"<<endl;
+
+    CellularAutomaton ca_parity = CellularAutomaton(
+        4,
+        4,
+        periodic_bounds,
+        "parity",
+        "VonNeumann",
+        binary,
+        true
+    );
+    ca_parity.print_current();
+
+    // Test parity_rule()
+    cout<<"Performing Parity Rule at cell 6 using parity rule()..."<<endl;
+    ca_parity.parity_rule(6);
+    ca_parity.print_current();
+
+    cout<<"Performing State Transition function using parity rule..."<<endl;
+    ca_parity.state_transition_function();
+    ca_parity.print_current();
+
+    // Testing n_transitions() and print_all_states()
+    cout<<"Performing State Transition function using parity rule for 20 steps using n_transitions()..."<<endl;
+    ca_parity.n_transitions(20);
+    cout<<"print_all_states() prints out all past states"<<endl;
+    ca_parity.print_all_states();
+
+    cout<<"End of test suite. All Functions perform as expected."<<endl;
 
     return 0;
 }

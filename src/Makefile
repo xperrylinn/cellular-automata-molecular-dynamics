@@ -1,4 +1,8 @@
-# TODO: add documentation here
+# Makefile for ROOT/src
+# >make all
+#		makes all object data from cxx files in this directory, then creates a library
+# >make cleanall
+#		deletes all object and library data from ../lib
 
 # GNU C++ Compiler
 CXX         = g++      

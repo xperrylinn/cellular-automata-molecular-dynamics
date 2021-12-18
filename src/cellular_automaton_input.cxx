@@ -1,3 +1,10 @@
+/*
+    Cellular Automaton: Input Services
+    ROOT/src/cellular_automaton_input.cxx
+    This file, cellular_automaton_input.cxx, contains all the source code for the input service functions of the CellularAutomaton,
+        including contruction, attribute setting, and user validation.
+*/
+
 #include <cellular_automaton.h>
 #include <iostream>
 #include <string>

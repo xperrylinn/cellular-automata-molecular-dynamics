@@ -4,7 +4,7 @@
 # Creator:  Kevin Fong
 #
 This directory contains only executable binary files. The  Makefile in this directory will execute executables in this subdirectory.
-C++ Programs in the ../tests and the ../examples subdirectories create binary files that should be stored in this subdirectory.  
+C++ Programs in the ../tests subdirectory create binary files that should be stored in this subdirectory.  
 
 PATH ROOT_DIR/bin
     Files:

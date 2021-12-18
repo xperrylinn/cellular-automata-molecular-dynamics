@@ -1,0 +1,13 @@
+# for MSSE Chem 274B - Fall Semester
+# University of California, Berkeley
+# 
+# Creator:  Kevin Fong
+#
+This directory contains .cvs and .json files of CellularAutomata.
+When executables are run in ../bin, .cvs(containing snap_shots)and .json files (containing metadata), are moved and stored here.
+solute_CA_output_visualization_v2.py can take in .cvs and .json data to produce a visualization of the CellularAutomaton.
+
+
+PATH ROOT_DIR/examples/data
+    Files:
+    - README: this file with a general description of the gallery subdirectory

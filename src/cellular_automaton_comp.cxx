@@ -1,3 +1,10 @@
+/*
+    Cellular Automaton: Computational Services
+    ROOT/src/cellular_automaton_comp.cxx
+    This file, cellular_automaton_comp.cxx, contains all the source code for the computational service functions of the CellularAutomaton
+        including neighbor perception, algorithm rules, and state transition functions.
+*/
+
 #include <cellular_automaton.h>
 #include <iostream>
 #include <string>
@@ -118,7 +125,7 @@ void CellularAutomaton::majority_rule (int index) {
     list<int> neighbors = get_neighbors (index);
     for (int n:neighbors)   {
         int neighbor_value = previous_state[n];
-        if (hashtable.size() < neighbor_value)   {
+        if (hashtable.size() < neighbor_value+1)   {
             hashtable.resize(neighbor_value+1);
         }
         hashtable[neighbor_value] += 1;

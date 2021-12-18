@@ -1,3 +1,9 @@
+/*
+    Cellular Automaton: Header
+    ROOT/include/cellular_automaton.h
+    This file, cellular_automaton.h, contains the API for the Cellular Automaton object, and documentation for all functions.
+*/
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -82,7 +88,7 @@ class CellularAutomaton {
         list<int> get_neighbors(int index);
 
         /**
-         * append_snapshot
+         * append_snapshot(vector<int>)
          *
          * Appends to the list of snap shots.
          * 
@@ -91,7 +97,7 @@ class CellularAutomaton {
         void append_snapshot(vector<int> snap_shot);
 
         /**
-         * get_last_snapshot
+         * get_last_snapshot()
          *
          * Returns the last state of the Cellular Automaton in snap_shots.
          * 
@@ -99,29 +105,40 @@ class CellularAutomaton {
          */
         vector<int> get_last_snapshot();
 
-        /*
-        */
+        /**
+         * set_boundary_conditions(vector<string>)
+         *
+         * Updates the attribute boundary condtitions of the cellular automaton.
+         * 
+         * @param vector<string> boundary_condition_map, new boundary conditions.
+         * @return void.
+         */
         void set_boundary_conditions(vector<string> boundary_condition_map);
 
-        /*
-        */
+        /**
+         * set_neighborhood(string)
+         *
+         * Updates the attribute neighborhood condtition of the cellular automaton.
+         * 
+         * @param string neighborhood, new neighborgood condition.
+         * @return void.
+         */
         void set_neighborhood(string neighborhood);
 
         /* PRINTING TO COUT */
 
         /**
-         * print_grid
+         * print_grid(vector<int>)
          *
          * Prints a state of the Cellular Automaton in snap_shots to std::cout.
          * 
          * @param vector<int>
          * @return void.
-         * 
          */
         void print_grid(vector<int> state);
 
         /**
-         * print_current
+         * print_current()
          *
          * Prints the last state of the Cellular Automaton in snap_shots to std::cout.
          * 
@@ -142,12 +159,21 @@ class CellularAutomaton {
          */
         void print_all_states();
 
+        /**
+         * print_neighbors
+         *
+         * Prints the elements in a vector, a contianer of neighbors.
+         * 
+         * @param vector of int, vectors of indices of neighbors.
+         * @return void.
+         * 
+         */
         void print_neighbors(vector<int> neighbors);
 
         /* STATE TRANITION FUNCTION */
 
         /**
-         * state_transition_function
+         * state_transition_function()
          *
          * Applies the rule function to each cell of the current state grid.
          * 
@@ -169,7 +195,7 @@ class CellularAutomaton {
         /* RULES */
 
         /**
-         * majority_rule
+         * majority_rule(index)
          *
          * updates the state of a cell at index in the current_state by majority rule.
          * 
@@ -179,7 +205,7 @@ class CellularAutomaton {
         void majority_rule(int index);
 
         /**
-         * parity_rule
+         * parity_rule(index)
          *
          * updates the state of a cell at index in the current_state by parity rule. Used for Binary Cellular Automata
          * 
@@ -191,6 +217,8 @@ class CellularAutomaton {
         /* OUPUT SERVICES METHODS */
 
         /**
+         * write_snap_shots_to_csv(filename)
+         * 
          * writes the snap shots to a CSV file where there is a column for the
          * the stamp and a column for each of the grid cells from a row major 
          * array
@@ -200,6 +228,14 @@ class CellularAutomaton {
          */
         void write_snap_shots_to_csv(string filename);
 
+        /**
+         * write_simulation_metadata_to_json(filename)
+         * 
+         * writes metadata of the celular automata object (rows, column, numbers of possible cellular states, number of time states)
+         *
+         * @param  file name and path string
+         * @return void.
+         */
         void write_simulation_metadata_to_json(std::string filename);
 
 };

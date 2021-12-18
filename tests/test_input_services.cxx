@@ -8,7 +8,7 @@
 using namespace std;
 
 int main() {
-    cout << "Hello World! From tests.cxx" << endl;
+    cout << "This is the test suite for the input functions of the CellularAutomaton" << endl;
 
     // Constructor
     vector<int> v;

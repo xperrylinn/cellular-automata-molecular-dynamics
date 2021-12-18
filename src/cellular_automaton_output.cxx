@@ -1,3 +1,10 @@
+/*
+    Cellular Automaton: Output Services
+    ROOT/src/cellular_automaton_outut.cxx
+    This file, cellular_automaton_output.cxx, contains all the source code for the output service functions of the CellularAutomaton
+        including printing to cout, and writing to files.
+*/
+
 #include <cellular_automaton.h>
 #include <iostream>
 #include <string>
