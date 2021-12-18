@@ -28,6 +28,7 @@ The class offers the following list of base functionality:
 	- Fixed
 	- Cutoff
 	- None
+	
 To add more general functionlaity to this class feel free to open a pull request to introduce new features with relevant unit tests placed test in the `tests` directory. Another option for increasing functionality of the `CellularAutomaton` class, is to use class ihertiance as demonstrated in the examples section below. This is particularly useful if you want to build a class of CA simulations unique to a domain like __molecular dyanmics__ (classical mechanics applied to molecular systems).
 
 ### Examples
