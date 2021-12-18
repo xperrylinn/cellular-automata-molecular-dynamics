@@ -9,5 +9,4 @@ C++ Programs in the .. subdirectories create binary files that should be stored 
 PATH ROOT_DIR/examples/bin
     Files:
     - README: this file with a general description of the bin subdirectory
-    - Makefile: executes the executables of files in the /tests and /examples subdirectories.
     

@@ -1,3 +1,8 @@
+/*
+    Cellular Automaton: Tests for Computational Servicees
+    ROOT/test/test_input_services.cxx
+    This file, test_input_services.cxx, contains the test suite for the input services of the Cellular Automaton.
+*/
 #include <cellular_automaton.h>
 #include <iostream>
 #include <vector>

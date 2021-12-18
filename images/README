@@ -1,0 +1,10 @@
+# for MSSE Chem 274B - Fall Semester
+# University of California, Berkeley
+# 
+# Creator:  Kevin Fong
+#
+This is directory where images can be stored. Images are used in root directory README.
+
+PATH ROOT_DIR/images
+    Files:
+    - README: this file with a general description of the images subdirectory

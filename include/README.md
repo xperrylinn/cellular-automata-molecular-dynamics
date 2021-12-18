@@ -8,5 +8,5 @@ API of program is contained in the header files.
 
 PATH ROOT_DIR/include
     Files:
-    - README: this file with a general description of the src subdirectory
+    - README: this file with a general description of the include subdirectory
     - cellular_automaton_input.h: API for the CellularAutomaton object.

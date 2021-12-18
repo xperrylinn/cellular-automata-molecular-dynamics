@@ -1,4 +1,8 @@
-# TODO: DOCUMENTATION HERE
+# Makefile for ROOT/test
+# >make all
+#		makes all executable files from cxx files in this directory
+# >make cleanall
+#		deletes all executable file data from /bin
 
 # GNU C++ Compiler
 CXX         = g++      

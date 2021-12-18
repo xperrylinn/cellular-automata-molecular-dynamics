@@ -1,3 +1,9 @@
+/*
+    Cellular Automaton: Tests for Computational Servicees
+    ROOT/test/test_computational_services.cxx
+    This file, test_computational_services.cxx, contains the test suite for the computational services of the Cellular Automaton.
+*/
+
 #include <cellular_automaton.h>
 #include <iostream>
 #include <vector>
